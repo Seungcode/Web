@@ -6,11 +6,18 @@ margin-top: 20px;
 margin-bottom: 80px;
 }
 
+.menu-item img {
+    max-width: 100%; /* 부모 요소의 크기에 맞게 이미지 크기를 조절 */
+    height: auto;    /* 가로 세로 비율을 유지한 채로 크기를 조절 */
+    border-radius: 10px;
+}
+
 .menu-item {
 position: relative;
 width: 33%;
 padding: 10px; 
-border: red 1px solid;
+border: #9D3939 1px solid;
+border-radius: 10px;
 margin: 10px;
 display: flex;
 flex-direction: column;
