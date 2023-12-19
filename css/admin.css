@@ -1,0 +1,32 @@
+.login-container {
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin-top: 20px;
+}
+.login-box {
+    margin: 60px auto;
+    padding: 30px;
+    border: 1px solid #545454;
+    max-width: 400px;
+}
+
+.login-box label {
+    display: block;
+    margin-bottom: 5px;
+}
+
+.login-box input {
+    width: calc(100% - 12px); /* Adjust padding and border */
+    padding: 6px;
+    margin-bottom: 10px;
+    border: 1px solid #545454;
+    border-radius: 3px;
+}
+
+/* Additional styling for placeholder text */
+.login-box input::placeholder {
+    color: #999;
+}

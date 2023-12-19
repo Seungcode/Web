@@ -1,0 +1,24 @@
+/* 초기화 */
+*{
+margin: 0;
+padding: 0;
+box-sizing: border-box;
+
+}
+
+li{
+list-style-type: none;
+}
+  
+body {
+font-family: Arial, sans-serif;
+margin: 0;
+padding: 0;
+}
+a {
+text-decoration: none;
+}
+
+
+
+

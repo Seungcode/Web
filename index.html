@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<title>honghee</title>
+		<link rel="stylesheet" type="text/css" href="css/common.css">
+		<link rel="stylesheet" type="text/css" href="css/home.css">
+		<link href="https://webfontworld.github.io/yangheeryu/Dongle.css" rel="stylesheet">
+		<script src="./js/home.js" type="text/javascript"></script>
+	</head>
+	<body>
+		<header>
+			<div id="logo">
+				<a href="./index.html">
+					<img src="./images/home.png" alt="Honghee" class="logo">
+				</a>
+			</div>
+			<div id="menu-icon">
+				<img src="./images/hamburger.png" alt="menu">
+			</div>
+		</header>
+	
+		<div id="modal" class="modal">
+			<div class="modal-content">
+				<a class="tab" href="./guide.html">매장 안내</a>
+				<a class="tab" href="./menu.html">메뉴 정보</a>
+				<a class="tab" href="./announce.html">공지 사항</a>
+				<a id="admin-btn" href="./admin.html">관리자</a>
+				<span id="close" class="close">&times;</span>
+			</div>
+		</div>
+		<div class="slide-container">
+			<div class="blank-box">
+				<div class="slide_prev_button slide_button">◀</div>
+			</div>
+			<div class="slide_wrap">
+				<img src="" alt="시그니처">
+				
+				
+			</div>
+			<div class="blank-box">
+				<div class="slide_next_button slide_button">▶</div>
+			</div>
+		</div>
+	
+	<script>
+		window.onload = function() {
+            checkAuth();
+			startSlideshow();
+        };
+
+        function checkAuth() {
+            var adminButton = document.getElementById('admin-btn');
+            var isAuthenticated = localStorage.getItem('auth');
+
+            if (isAuthenticated === 'true') {
+                adminButton.innerText = '로그아웃';
+                adminButton.onclick = function() {
+                    var confirmLogout = confirm('로그아웃 하시겠습니까?');
+
+                    if (confirmLogout) {
+                        localStorage.setItem('auth', 'false');
+                        location.reload(); 
+                    }
+                };
+            }
+        }
+
+		//햄버거 모달창
+		var modal = document.getElementById("modal");
+		var menuIcon = document.getElementById("menu-icon");
+		var closeBtn = document.getElementById("close");
+
+		menuIcon.onclick = function() {
+			modal.style.display = "block";
+		}
+		closeBtn.onclick = function() {
+			modal.style.display = "none";
+		}
+		window.onclick = function(event) {
+			if (event.target == modal) {
+				modal.style.display = "none";
+			}
+		}
+
+		// 슬라이드
+		const images = [
+			'./images/strawberry.png',
+			'./images/happy.png',
+			'./images/doongle.png',
+		];
+
+		const imgElement = document.querySelector('.slide_wrap img');
+		const prevButton = document.querySelector('.slide_prev_button');
+		const nextButton = document.querySelector('.slide_next_button');
+
+		let currentIndex = 0;
+
+		function showImage(index) {
+			imgElement.src = images[index];
+		}
+
+		function nextImage() {
+			currentIndex = (currentIndex + 1) % images.length;
+			showImage(currentIndex);
+		}
+
+		function prevImage() {
+			currentIndex = (currentIndex - 1 + images.length) % images.length;
+			showImage(currentIndex);
+		}
+
+		nextButton.addEventListener('click', nextImage);
+		prevButton.addEventListener('click', prevImage);
+
+		showImage(currentIndex);
+
+		function startSlideshow() {
+			setInterval(nextImage, 5000); 
+		}	
+	</script>
+</body>
+</html>

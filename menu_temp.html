@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>honghee</title>
+    <link rel="stylesheet" type="text/css" href="css/common.css">
+    <link rel="stylesheet" type="text/css" href="css/home.css">
+    <link rel="stylesheet" type="text/css" href="css/menu.css">
+    <link href="https://webfontworld.github.io/yangheeryu/Dongle.css" rel="stylesheet">
+    <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+    <script src="./js/home.js" type="text/javascript"></script>
+</head>
+<body>
+    <header>
+        <div id="logo">
+            <a href="./index.html">
+                <img src="./images/home.png" alt="Honghee" class="logo">
+            </a>
+        </div>
+        <div id="menu-icon">
+            <img src="./images/hamburger.png" alt="menu">
+        </div>
+    </header>
+
+    <div id="modal" class="modal">
+        <div class="modal-content">
+            <a class="tab" href="./guide.html">매장 안내</a>
+            <a class="tab" href="./menu.html">메뉴 정보</a>
+            <a class="tab" href="./announce.html">공지 사항</a>
+            <a id="admin-btn" href="./admin.html">관리자</a>
+            <span id="close" class="close">&times;</span>
+        </div>
+    </div>
+    <div class="update-box">
+    </div>
+    <div class="menu-items"> 
+    </div>
+
+    <script>
+        $(document).ready(function() {
+            // 페이지 로드 시 AJAX를 통해 메뉴 정보를 가져옴
+            $.ajax({
+                url: 'http://15.164.167.203:3000/menu/info',
+                method: 'GET',
+                dataType: 'json',
+                success: function(menuData) {
+                    // 메뉴 데이터를 동적으로 출력
+                    var menuContainer = $('.menu-items');
+                    $.each(menuData.data, function(index, item) {
+                        var menuItem = $('<div class="menu-item">');
+                        menuItem.append('<div class="item-content">' +
+                            '<input type="checkbox" class="item-checkbox" hidden>' +
+                            '<img src="' + item.img + '" alt="' + item.name + '">' +
+                            '<h3>' + item.name + '</h3>' +
+                            '<p>가격: ' + item.price / 100 + '원</p>' +
+                            '<p>' + item.info + '</p>' +
+                            '</div>' +
+                            '<button id="edit-btn" hidden>수정</button>');
+                        menuContainer.append(menuItem);
+                    });
+                },
+                error: function() {
+                    console.log('메뉴 정보를 가져오는 데 실패했습니다.');
+                }
+            });
+        });
+    </script>
+
+</body>
+</html>
+

@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<title>honghee</title>
+		<link rel="stylesheet" type="text/css" href="css/common.css">
+		<link rel="stylesheet" type="text/css" href="css/home.css">
+		<link rel="stylesheet" type="text/css" href="css/announce.css">
+		<link href="https://webfontworld.github.io/yangheeryu/Dongle.css" rel="stylesheet">
+		<script src="./js/home.js" type="text/javascript"></script>
+	</head>
+	<body>
+		<header>
+			<div id="logo">
+				<a href="./index.html">
+					<img src="./images/home.png" alt="Honghee" class="logo">
+				</a>
+			</div>
+			<div id="menu-icon">
+				<img src="./images/hamburger.png" alt="menu">
+			</div>
+		</header>
+		<div id="modal" class="modal">
+			<div class="modal-content">
+				<a class="tab" href="./guide.html">매장 안내</a>
+				<a class="tab" href="./menu.html">메뉴 정보</a>
+				<a class="tab" href="./announce.html">공지 사항</a>
+				<a id="admin-btn" href="./admin.html">관리자</a>
+				<span id="close" class="close">&times;</span>
+			</div>
+		</div>
+		<div class="update-box">
+		</div>
+		<div class="announce-container">
+			<div class="announce-box event-box">
+				<h4>이벤트 안내</h4>
+
+			</div>
+			<div class="announce-box notice-box">
+				<h4>공지 사항 안내</h4>
+			</div>
+		</div>
+	
+		<script>
+			window.onload = function() {
+				checkAuth();
+			};
+
+			function checkAuth() {
+				var isAuthenticated = localStorage.getItem('auth');
+				var itemCheckboxes = document.querySelectorAll('.item-checkbox');
+		
+				if (isAuthenticated === 'true') {
+					itemCheckboxes.forEach(action => {
+						action.removeAttribute('hidden');
+					});
+					createDeleteButton();
+					createAddButton();
+				}
+			}
+
+			//햄버거 모달창
+			var modal = document.getElementById("modal");
+			var menuIcon = document.getElementById("menu-icon");
+			var closeBtn = document.getElementById("close");
+
+			menuIcon.onclick = function() {
+				modal.style.display = "block";
+			}
+			closeBtn.onclick = function() {
+				modal.style.display = "none";
+			}
+			window.onclick = function(event) {
+				if (event.target == modal) {
+					modal.style.display = "none";
+				}
+			}
+
+			const eventData = {
+				"data": [
+				{
+					"id": 1,
+					"title": "1번 내용1번 내용1번 내용1번 내용1번 내용1번 내용"
+				},
+				{
+					"id": 2,
+					"title": "2번 내용"
+				},
+				{
+					"id": 3,
+					"title": "3번 내용"
+				},
+				{
+					"id": 4,
+					"title": "4번 내용"
+				},
+				]
+			}
+			const noticeData = {
+				"data": [
+				{
+					"id": 1,
+					"title": "1번 내용"
+				},
+				{
+					"id": 2,
+					"title": "2번 내용"
+				},
+				{
+					"id": 3,
+					"title": "3번 내용"
+				},
+				{
+					"id": 4,
+					"title": "4번 내용"
+				},
+				]
+			}
+
+			const eventAnnounceBox = document.querySelector('.event-box');
+			const noticeAnnounceBox = document.querySelector('.notice-box');
+
+			eventData.data.forEach(item => {
+				const itemContainer = document.createElement('div');
+				itemContainer.classList.add('item-container');
+			
+				const content = `
+					<input type="checkbox" class="item-checkbox" hidden>
+					<a class="item-title" href="" style="color: black;">${item.title}</a>
+				`;
+			
+				itemContainer.innerHTML = content;
+				eventAnnounceBox.appendChild(itemContainer);
+			});
+
+			noticeData.data.forEach(item => {
+				const itemContainer = document.createElement('div');
+				itemContainer.classList.add('item-container');
+			
+				const content = `
+					<input type="checkbox" class="item-checkbox" hidden>
+					<a class="item-title" href="" style="color: black;">${item.title}</a>
+				`;
+			
+				itemContainer.innerHTML = content;
+				noticeAnnounceBox.appendChild(itemContainer);
+			});
+
+			// 삭제
+			function createDeleteButton() {
+				const deleteButton = document.createElement('button');
+				deleteButton.innerText = '삭제';
+				deleteButton.addEventListener('click', () => {
+					const checkedItems = document.querySelectorAll('.item-checkbox:checked');
+					const checkedItemIds = Array.from(checkedItems).map(item => parseInt(item.closest('.announce-item').dataset.id));
+
+					menuData.data = menuData.data.filter(item => !checkedItemIds.includes(item.id));
+
+					checkedItems.forEach(item => item.closest('.announce-item').remove());
+					console.log("삭제",checkedItems);
+				});
+
+				const updateBox = document.querySelector('.update-box');
+				updateBox.appendChild(deleteButton);
+			}
+
+			// 추가
+			function createAddButton() {
+				const addButton = document.createElement('button');
+				addButton.innerText = '추가';
+				addButton.addEventListener('click', () => {			
+					window.location.href = 'add_announce.html';  // 추가하기 페이지 이동( 만들 예정 )
+				});
+			
+				const updateBox = document.querySelector('.update-box');
+				updateBox.appendChild(addButton);
+			}
+			
+		</script>										
+
+	</body>
+</html>
