@@ -1,46 +1,76 @@
 
 .map-container {
-display: flex;
-flex-wrap: wrap;
-justify-content: center;
-margin-top: 20px;
-}
-
-.map-box {
-width: 60%;
-margin-bottom: 20px;
-padding: 20px;
-border: 1px solid #ccc;
-box-sizing: border-box;
-}
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    margin-top: 20px;
+    }
     
-.boxes {
-display: flex;
-flex-wrap: wrap;
-justify-content: center;
-margin-top: 20px;
-}
-
-.box {
-width: 30%;
-margin-left: 10px;
-margin-right: 10px;
-margin-bottom: 100px;
-padding: 20px;
-border: 1px solid #ccc;
-box-sizing: border-box;
-}
-
-.map-box img{
-max-width: 100%;
-max-height: 100%;
-width: auto;
-height: auto;
-margin-top: 10px;
-object-fit: contain;
-padding-bottom: 0px;
-}
-
-.map-guide {
+    .map-box {
+    width: 60%;
+    margin-bottom: 20px;
+    padding: 20px;
+    border: 1px solid #ccc;
+    box-sizing: border-box;
+    }
+        
+    .boxes {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    margin-top: 20px;
+    }
+    
+    .box {
+    width: 30%;
+    margin-left: 10px;
+    margin-right: 10px;
+    margin-bottom: 100px;
+    padding: 20px;
+    border: 1px solid #ccc;
+    box-sizing: border-box;
+    }
+    
+    .map-box img{
+    max-width: 100%;
+    max-height: 100%;
+    width: auto;
+    height: auto;
     margin-top: 10px;
-}
+    object-fit: contain;
+    padding-bottom: 0px;
+    }
+    
+    .map-guide {
+        margin-top: 10px;
+    }
+    
+    
+    .background-images {
+    position: relative;
+    width: 100vw;
+    height: 100vh;
+    }
+    
+    .image {
+    position: absolute;
+    width: 100px; /* Adjust size as needed */
+    height: 100px; /* Adjust size as needed */
+    /* Set background images */
+    }
+    
+    .bear1 {
+    background-image: url('./../images/bearcandle1.png');
+    }
+    
+    .bear2 {
+    background-image: url('./../images/bearcandle2.png');
+    }
+    
+    .bomb1 {
+    background-image: url('./../images/bombcandle1.png');
+    }
+    
+    .bomb2 {
+    background-image: url('./../images/bombcandle2.png');
+    }

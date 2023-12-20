@@ -21,7 +21,7 @@
 				<img src="./images/hamburger.png" alt="menu">
 			</div>
 		</header>
-	
+
 		<div id="modal" class="modal">
 			<div class="modal-content">
 				<a class="tab" href="./guide.html">매장 안내</a>
@@ -102,10 +102,19 @@
 			closeBtn.onclick = function() {
 				modal.style.display = "none";
 			}
-			window.onclick = function(event) {
-				if (event.target == modal) {
-					modal.style.display = "none";
-				}
+			
+			$(document).ready(function() {
+				$(".image").each(function() {
+					// Rotate each image
+					rotateImage($(this));
+				});
+			});
+				
+			function rotateImage($element) {
+			$element.css({ transformOrigin: "center center" });
+			setInterval(function() {
+				$element.css({ transform: "rotate(+=1deg)" }); // Rotate by 1 degree
+				}, 50); // Adjust the rotation speed as needed
 			}
 			
 		</script>

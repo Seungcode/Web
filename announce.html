@@ -30,15 +30,19 @@
 				<span id="close" class="close">&times;</span>
 			</div>
 		</div>
-		<div class="update-box">
-		</div>
-		<div class="announce-container">
-			<div class="announce-box event-box">
-				<h4>이벤트 안내</h4>
-
-			</div>
-			<div class="announce-box notice-box">
-				<h4>공지 사항 안내</h4>
+		<div class="center-maker">
+			<div class="center">
+				<div class="update-box">
+				</div>
+				<div class="announce-container">
+					<div class="announce-box event-box">
+						<h4>이벤트 안내</h4>
+		
+					</div>
+					<div class="announce-box notice-box">
+						<h4>공지 사항 안내</h4>
+					</div>
+				</div>
 			</div>
 		</div>
 	
@@ -48,10 +52,21 @@
 			};
 
 			function checkAuth() {
+				var adminButton = document.getElementById('admin-btn');
 				var isAuthenticated = localStorage.getItem('auth');
 				var itemCheckboxes = document.querySelectorAll('.item-checkbox');
 		
 				if (isAuthenticated === 'true') {
+					adminButton.innerText = '로그아웃';
+					adminButton.onclick = function() {
+						var confirmLogout = confirm('로그아웃 하시겠습니까?');
+
+						if (confirmLogout) {
+							localStorage.setItem('auth', 'false');
+							location.reload(); 
+						}
+					};
+					
 					itemCheckboxes.forEach(action => {
 						action.removeAttribute('hidden');
 					});
@@ -71,11 +86,7 @@
 			closeBtn.onclick = function() {
 				modal.style.display = "none";
 			}
-			window.onclick = function(event) {
-				if (event.target == modal) {
-					modal.style.display = "none";
-				}
-			}
+			
 
 			const eventData = {
 				"data": [
