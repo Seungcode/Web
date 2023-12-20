@@ -1,13 +1,13 @@
 @font-face {
-    font-family: 'TAEBAEKmilkyway';
-    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2310@1.0/TAEBAEKmilkyway.woff2') format('woff2');
-    font-weight: normal;
+    font-family: 'Godo';
     font-style: normal;
-}
+    font-weight: 400;
+    src: url('//cdn.jsdelivr.net/korean-webfonts/1/corps/godo/Godo/GodoM.woff2') format('woff2'), url('//cdn.jsdelivr.net/korean-webfonts/1/corps/godo/Godo/GodoM.woff') format('woff');
+  }
 
 body {
     background-color: #F1F1F1;
-    font-family: 'TAEBAEKmilkyway', sans-serif;
+    font-family: 'Godo';
 }
 
 header {
@@ -18,6 +18,7 @@ header {
 }
 
 #menu-icon {
+    display: none; /* 초기에는 햄버거 아이콘 숨김 */
     position: absolute;
     top: 20px; 
     right: 20px; 
@@ -62,10 +63,29 @@ header {
 .tab {
     color: #9D3939;
     font-weight: bold;
-    font-size: 48px;
-    font-family: 'Dongle';
+    font-size: 1.75em;    
     display: inline-block; 
-    margin-bottom: 10px; 
+    margin-bottom: 3%; 
+    margin-top: 2%;
+    margin-right: 5%;
+    margin-left: 5%;
+}
+
+.tab2 {
+    color: #9D3939;
+    font-weight: bold;
+    font-size: 1.75em; 
+    display: block;
+    margin-bottom: 3%; 
+    margin-top: 2%;
+    margin-right: 5%;
+    margin-left: 5%;
+}
+
+@media (max-width: 600px) {
+    .tab {
+        font-size: 1.25em; /* 상대적으로 작은 크기로 설정 */
+    }
 }
 
 #admin-btn {
@@ -95,6 +115,12 @@ header {
     display: flex;
     justify-content: center;
     align-items: center;
+    height: 800px;
+    width: 100%;
+    background-color: antiquewhite;
+    overflow: hidden;
+    z-index: -1;
+
 }
 
 .blank-box {
@@ -107,17 +133,16 @@ header {
     display: flex;
     align-items: center;
     justify-content: center;
-    margin-top: 30px;
 }
 
-@media (max-width: 600px) {
+@media (width: 1600px) {
     .slide_wrap {
         margin-top: 10px;
     }
 }
 
 .slide_wrap img {
-    border-radius: 15px;
+    border-radius: 0px;
 }
 
 .slide_button {
@@ -128,11 +153,15 @@ header {
 }
 
 .slide_prev_button {
-    right: 10px;
+    right: -40px;
+    color: white;
+    font-size: xx-large;
 }
 
-.slide_next_button {
-    left: 10px;
+.slide_next_button { 
+    font-size: xx-large;
+    color: white;
+    left: -40px;
 }
 
 
@@ -179,10 +208,57 @@ animation-name: swashIn;
 }
 
 /* 미디어 쿼리 */
-@media ( max-width: 768px ) {
+@media ( max-width: 1600px ) {
     .slide_wrap img {
-        width: 500px;
+        width: 1500px;
     }
+
     
     
+}
+
+.cake1_container{
+    /* margin-top: 5%; */
+    height: 100vh;
+    overflow: hidden;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color:#F1F1F1;
+}
+
+.cake1_img {
+    width: 100%;
+}
+
+.cake1_info{
+    margin-left: 20px;
+}
+
+#admin-container {
+    margin-right: 10px;
+}
+
+#admin-btn {
+    color: #9D3939;
+    font-weight: bold;
+    font-size: 1.5em;
+    cursor: pointer;
+    margin-left: 10%;
+}
+
+@media only screen and (max-width: 768px) {
+    #admin-btn {
+        display: none; /* 화면이 작아지면 관리자 버튼 숨김 */
+    }
+
+    #menu-icon {
+        display: block; /* 화면이 작아지면 햄버거 아이콘 나타남 */
+    }
+
+    /* 추가된 스타일은 필요에 따라 조정 가능 */
+    .tab {
+        display: none;
+    }
 }

@@ -6,12 +6,20 @@
     margin-top: 20px;
     }
     
-    .map-box {
+.map-box {
     width: 60%;
     margin-bottom: 20px;
     padding: 20px;
     border: 1px solid #ccc;
     box-sizing: border-box;
+    }
+
+.h4{
+        margin: 10px;
+    }
+
+    .p{
+        margin: 10px;
     }
         
     .boxes {

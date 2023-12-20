@@ -16,33 +16,48 @@
 					<img src="./images/home.png" alt="Honghee" class="logo">
 				</a>
 			</div>
-			<div id="menu-icon">
-				<img src="./images/hamburger.png" alt="menu">
-			</div>
-		</header>
-	
-		<div id="modal" class="modal">
-			<div class="modal-content">
+			<div>
 				<a class="tab" href="./guide.html">매장 안내</a>
 				<a class="tab" href="./menu.html">메뉴 정보</a>
 				<a class="tab" href="./announce.html">공지 사항</a>
-				<a id="admin-btn" href="./admin.html">관리자</a>
-				<span id="close" class="close">&times;</span>
 			</div>
-		</div>
-		<div class="slide-container">
+	        <div id="admin-container">
+            	<a id="admin-btn" href="./admin.html">관리자</a>
+        	</div>
+			<div id="menu-icon">
+				<img src="./images/hamburger.png" alt="menu">
+			</div>
+			<div id="modal" class="modal">
+				<div class="modal-content">
+					<a class="tab2" href="./guide.html">매장 안내</a>
+					<a class="tab2" href="./menu.html">메뉴 정보</a>
+					<a class="tab2" href="./announce.html">공지 사항</a>
+					<a id="admin-btn" href="./admin.html">관리자</a>
+					<span id="close" class="close">&times;</span>
+				</div>
+			</div>
+		</header>
+	
+		<!-- <div class="slide-container">
 			<div class="blank-box">
 				<div class="slide_prev_button slide_button">◀</div>
 			</div>
 			<div class="slide_wrap">
 				<img src="" alt="시그니처">
-				
-				
 			</div>
 			<div class="blank-box">
 				<div class="slide_next_button slide_button">▶</div>
 			</div>
+		</div> -->
+
+		<div class="cake1_container">
+			<img class="cake1_img" src="./images/strawberry.png" >
+			<!-- <div class="cake1_inf">
+				<h1>생딸기 생크림</h1>
+				<p>adsfjas;dfjaks;dfjadls;kfjklads jf;asklf ja;klsf jas;d fasd</p>
+			</div> -->
 		</div>
+		
 	
 	<script>
 		window.onload = function() {
@@ -82,9 +97,9 @@
 
 		// 슬라이드
 		const images = [
-			'./images/strawberry.png',
-			'./images/happy.png',
-			'./images/doongle.png',
+			'./images/KakaoTalk_Photo_2023-12-21-00-32-06.jpeg',
+			'./images/KakaoTalk_Photo_2023-12-21-00-32-04.jpeg',
+			'./images/KakaoTalk_Photo_2023-12-21-00-32.jpeg',
 		];
 
 		const imgElement = document.querySelector('.slide_wrap img');
@@ -113,7 +128,7 @@
 		showImage(currentIndex);
 
 		function startSlideshow() {
-			setInterval(nextImage, 5000); 
+			setInterval(nextImage, 1000); 
 		}	
 	</script>
 </body>

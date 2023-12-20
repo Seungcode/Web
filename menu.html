@@ -42,16 +42,13 @@
     </div>
 
     <script>
-        
-        window.onload = function() {
-            checkAuth();
-        };
-
+    
         function checkAuth() {
             var adminButton = document.getElementById('admin-btn');
             var isAuthenticated = localStorage.getItem('auth');
             var itemCheckbox = document.querySelectorAll('.item-checkbox');
             var editBtn = document.querySelectorAll('#edit-btn');
+         console.log("isAuthenticated",isAuthenticated);
     
             if (isAuthenticated === 'true') {
                 adminButton.innerText = '로그아웃';
@@ -115,23 +112,6 @@
 
                         menuContainer.appendChild(menuItem);
                     });
-                    function createDeleteButton() {
-            const deleteButton = document.createElement('button');
-            deleteButton.innerText = '삭제';
-            deleteButton.addEventListener('click', () => {
-                const checkedItems = document.querySelectorAll('.item-checkbox:checked');
-                const checkedItemIds = Array.from(checkedItems).map(item => parseInt(item.closest('.menu-item').dataset.id));
-
-                menuData.data = menuData.data.filter(item => !checkedItemIds.includes(item.id));
-
-                checkedItems.forEach(item => item.closest('.menu-item').remove());
-                console.log("삭제", checkedItems);
-            });
-
-            const updateBox = document.querySelector('.update-box');
-            updateBox.appendChild(deleteButton);
-        }
-
                     $('.item-content').click(function() {
                         // 클릭한 클래스를 토글
                         $(this).toggleClass('item-content-clicked');
@@ -140,7 +120,9 @@
                         const itemInfo = $(this).find('.item-info');
                         itemInfo.toggleClass('show-info');
                     });
+               checkAuth();
                 },
+                
                 error: function() {
                     console.log('메뉴 정보를 가져오는 데 실패했습니다.');
                 }
@@ -151,6 +133,7 @@
         function createDeleteButton() {
             const deleteButton = document.createElement('button');
             deleteButton.innerText = '삭제';
+            deleteButton.classList.add('delete-button');
             deleteButton.addEventListener('click', () => {
                 const checkedItems = document.querySelectorAll('.item-checkbox:checked');
                 const checkedItemIds = Array.from(checkedItems).map(item => parseInt(item.closest('.menu-item').dataset.id));
@@ -169,6 +152,7 @@
         function createAddButton() {
             const addButton = document.createElement('button');
             addButton.innerText = '추가';
+            addButton.classList.add('add-button');
             addButton.addEventListener('click', () => {         
                 window.location.href = 'add_menu.html';  // 추가하기 페이지 이동( 만들 예정 )
             });
@@ -176,6 +160,19 @@
             const updateBox = document.querySelector('.update-box');
             updateBox.appendChild(addButton);
         }
+      // 케이크 정보 알려주기
+      const itemContents = document.querySelectorAll('.item-content');
+
+      itemContents.forEach(item => {
+         item.addEventListener('click', () => {
+            
+            item.classList.toggle('item-content-clicked');
+
+            
+            const itemInfo = item.querySelector('.item-info');
+            itemInfo.classList.toggle('show-info');
+         });
+      });
     </script>
 
 </body>
