@@ -8,9 +8,11 @@ flex-wrap: wrap;
 flex-direction: column;
 justify-content: center;
 align-items: flex-start;
-margin-top: 50px;
+margin-top: 30px;
+margin-bottom: 10px;
 border: 1px solid red;
 }
+
 .add-item {
 margin: 10px;
 color: #9D3939;
@@ -45,3 +47,6 @@ margin-top: 10px;
 .btn-primary:hover {
     background-color: #7b2a2a;
 }
+div {
+    text-align: center;
+  }

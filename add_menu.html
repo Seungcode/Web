@@ -24,7 +24,14 @@
             <img src="./images/hamburger.png" alt="menu">
         </div>
     </header>
-
+	<div style="text-align: center;">
+		<a class="tab" href="./guide.html">매장 안내</a>
+		<a class="tab" href="./menu.html">메뉴 정보</a>
+		<a class="tab" href="./announce.html">공지 사항</a>
+	</div>
+	<div id="admin-container">
+		<a id="admin-btn" href="./admin.html">관리자</a>
+	</div>
     <div id="modal" class="modal">
         <div class="modal-content">
             <a class="tab2" href="./guide.html">매장 안내</a>
@@ -35,29 +42,31 @@
         </div>
     </div>
     
-    <div class="container mt-5">
+    <div class="container mt-6">
         <div class="row justify-content-center">
-            <div class="col-md-9">
+            <div class="col-md-7">
                 <div class="card">
                     <div class="card-body">
                         <form>
-                            <div class="form-group">
+                            <div class="form-group" style="text-align: center;">
                                 <label for="imageInput">이미지 업로드</label>
                                 <input class="form-control" type="file" id="imageInput" accept="image/*" multiple>
                             </div>
-                            <div class="form-group">
+                            <div class="form-group" style="text-align: center;">
                                 <label for="nameInput">케이크 이름</label>
                                 <input class="form-control" type="text" id="nameInput" placeholder="케이크 이름">
                             </div>
-                            <div class="form-group">
+                            <div class="form-group" style="text-align: center;">
                                 <label for="priceInput">케이크 가격</label>
                                 <input class="form-control" type="number" id="priceInput" placeholder="케이크 가격">
                             </div>
-                            <div class="form-group">
+                            <div class="form-group" style="text-align: center;">
                                 <label for="infoInput">케이크 설명</label>
                                 <textarea class="form-control" id="infoInput" placeholder="케이크 설명 입력해주세요." rows="4" cols="20"></textarea>
                             </div>
-                            <button type="button" class="btn-primary" onclick="sendToServer()">추가</button>
+							<div style="text-align: center;">
+								<button type="button" class="btn-primary" onclick="sendToServer()">추가</button>
+							  </div>
                         </form>
                     </div>
                 </div>

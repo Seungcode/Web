@@ -7,6 +7,7 @@
 		<link rel="stylesheet" type="text/css" href="css/common.css">
 		<link rel="stylesheet" type="text/css" href="css/home.css">
 		<link rel="stylesheet" type="text/css" href="css/announce.css">
+		<script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
 		<link href="https://webfontworld.github.io/yangheeryu/Dongle.css" rel="stylesheet">
 		<script src="./js/home.js" type="text/javascript"></script>
 	</head>
@@ -21,6 +22,14 @@
 				<img src="./images/hamburger.png" alt="menu">
 			</div>
 		</header>
+		<div>
+					<a class="tab" href="./guide.html">매장 안내</a>
+					<a class="tab" href="./menu.html">메뉴 정보</a>
+					<a class="tab" href="./announce.html">공지 사항</a>
+		</div>
+		<div id="admin-container">
+			<a id="admin-btn" href="./admin.html">관리자</a>
+		</div>
 		<div id="modal" class="modal">
 			<div class="modal-content">
 				<a class="tab2" href="./guide.html">매장 안내</a>
@@ -47,10 +56,6 @@
 		</div>
 	
 		<script>
-			window.onload = function() {
-				checkAuth();
-			};
-
 			function checkAuth() {
 				var adminButton = document.getElementById('admin-btn');
 				var isAuthenticated = localStorage.getItem('auth');
@@ -86,82 +91,74 @@
 			closeBtn.onclick = function() {
 				modal.style.display = "none";
 			}
-			
 
-			const eventData = {
-				"data": [
-				{
-					"id": 1,
-					"title": "1번 내용1번 내용1번 내용1번 내용1번 내용1번 내용"
-				},
-				{
-					"id": 2,
-					"title": "2번 내용"
-				},
-				{
-					"id": 3,
-					"title": "3번 내용"
-				},
-				{
-					"id": 4,
-					"title": "4번 내용"
-				},
-				]
-			}
-			const noticeData = {
-				"data": [
-				{
-					"id": 1,
-					"title": "1번 내용"
-				},
-				{
-					"id": 2,
-					"title": "2번 내용"
-				},
-				{
-					"id": 3,
-					"title": "3번 내용"
-				},
-				{
-					"id": 4,
-					"title": "4번 내용"
-				},
-				]
-			}
-
-			const eventAnnounceBox = document.querySelector('.event-box');
-			const noticeAnnounceBox = document.querySelector('.notice-box');
-
-			eventData.data.forEach(item => {
-				const itemContainer = document.createElement('div');
-				itemContainer.classList.add('item-container');
+			$(document).ready(function() {
+				// 페이지 로드 시 AJAX를 통해 메뉴 정보를 가져옴
+				$.ajax({
+					url: 'http://15.164.167.203:3000/noti/event',
+					method: 'GET',
+					dataType: 'json',
+					success: function(eventData) {
+						// 메뉴 데이터를 동적으로 출력
+						const eventAnnounceBox = document.querySelector('.event-box');
+	
+						eventData.data.forEach(item => {
+							const itemContainer = document.createElement('div');
+							itemContainer.classList.add('item-container');
+			 
+							const content = `
+							<input type="checkbox" class="item-checkbox" hidden>
+							<a class="item-title" href="notice_detail.html?id=${item.noti_id}" style="color: black;">${item.title}</a> 
+							`;
 			
-				const content = `
-					<input type="checkbox" class="item-checkbox" hidden>
-					<a class="item-title" href="" style="color: black;">${item.title}</a>
-				`;
-			
-				itemContainer.innerHTML = content;
-				eventAnnounceBox.appendChild(itemContainer);
+							itemContainer.innerHTML = content;
+							eventAnnounceBox.appendChild(itemContainer);
+						});
+					},
+					
+					error: function() {
+						console.log('메뉴 정보를 가져오는 데 실패했습니다.');
+					}
+				});
 			});
 
-			noticeData.data.forEach(item => {
-				const itemContainer = document.createElement('div');
-				itemContainer.classList.add('item-container');
+
+			$(document).ready(function() {
+				// 페이지 로드 시 AJAX를 통해 메뉴 정보를 가져옴
+				$.ajax({
+					url: 'http://15.164.167.203:3000/noti/notify',
+					method: 'GET',
+					dataType: 'json',
+					success: function(noticeData) {
+						// 메뉴 데이터를 동적으로 출력
+						const noticeAnnounceBox = document.querySelector('.notice-box');
+	
+						noticeData.data.forEach(item => {
+							const itemContainer = document.createElement('div');
+							itemContainer.classList.add('item-container');
 			
-				const content = `
-					<input type="checkbox" class="item-checkbox" hidden>
-					<a class="item-title" href="" style="color: black;">${item.title}</a>
-				`;
+							const content = `
+							<input type="checkbox" class="item-checkbox" hidden>
+							<a class="item-title" href="notice_detail.html?id=${item.noti_id}" style="color: black;">${item.title}</a>
+							`;
 			
-				itemContainer.innerHTML = content;
-				noticeAnnounceBox.appendChild(itemContainer);
+							itemContainer.innerHTML = content;
+							noticeAnnounceBox.appendChild(itemContainer);
+						});
+						checkAuth();
+					},
+					
+					error: function() {
+						console.log('메뉴 정보를 가져오는 데 실패했습니다.');
+					}
+				});
 			});
 
 			// 삭제
 			function createDeleteButton() {
 				const deleteButton = document.createElement('button');
 				deleteButton.innerText = '삭제';
+				deleteButton.classList.add('delete-button');
 				deleteButton.addEventListener('click', () => {
 					const checkedItems = document.querySelectorAll('.item-checkbox:checked');
 					const checkedItemIds = Array.from(checkedItems).map(item => parseInt(item.closest('.announce-item').dataset.id));
@@ -180,6 +177,7 @@
 			function createAddButton() {
 				const addButton = document.createElement('button');
 				addButton.innerText = '추가';
+				addButton.classList.add('add-button');
 				addButton.addEventListener('click', () => {			
 					window.location.href = 'add_announce.html';  // 추가하기 페이지 이동( 만들 예정 )
 				});

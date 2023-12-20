@@ -90,7 +90,7 @@ header {
 
 #admin-btn {
     position: absolute;
-    bottom: 20px; 
+    top: 10px; 
     right: 20px; 
 }
 
@@ -242,8 +242,7 @@ animation-name: swashIn;
 
 #admin-btn {
     color: #9D3939;
-    font-weight: bold;
-    font-size: 1.5em;
+    font-size: 1em;
     cursor: pointer;
     margin-left: 10%;
 }
