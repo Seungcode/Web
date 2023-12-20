@@ -1,137 +1,155 @@
-<!-- id는 알아서 1씩 더해서 넣어지도록
-이미지,이름,가격,정보 는 사용자가
-오늘의 메뉴는 신메뉴니까 디폴트 true -->
 <!DOCTYPE html>
 <html lang="en">
-    <head>
-        <meta charset="UTF-8">
-		<meta name="viewport" content="width=device-width, initial-scale=1.0">
-		<title>honghee</title>
-		<link rel="stylesheet" type="text/css" href="css/common.css">
-		<link rel="stylesheet" type="text/css" href="css/home.css">
-        <link rel="stylesheet" type="text/css" href="css/add_item.css">
-		<script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
-		<link href="https://webfontworld.github.io/yangheeryu/Dongle.css" rel="stylesheet">
-		<script src="./js/home.js" type="text/javascript"></script>
-	</head>
-	<body>
-		<header>
-			<div id="logo">
-				<a href="./index.html">
-					<img src="./images/home.png" alt="Honghee" class="logo">
-				</a>
-			</div>
-			<div id="menu-icon">
-				<img src="./images/hamburger.png" alt="menu">
-			</div>
-		</header>
-	
-		<div id="modal" class="modal">
-			<div class="modal-content">
-				<a class="tab" href="./guide.html">매장 안내</a>
-				<a class="tab" href="./menu.html">메뉴 정보</a>
-				<a class="tab" href="./announce.html">공지 사항</a>
-				<a id="admin-btn" href="./admin.html">관리자</a>
-				<span id="close" class="close">&times;</span>
-			</div>
-		</div>
-        <div id="center">
-            <div class="add-container">
-                <input class="add-item" type="file" id="imageInput" accept="image/*" multiple>
-                <input class="add-item" type="text" id="nameInput" placeholder="케이크 이름">
-                <input class="add-item" type="number" id="priceInput" placeholder="케이크 가격">
-                <textarea class="add-item" id="infoInput" placeholder="케이크 설명 입력해주세요." rows="4" cols="20"></textarea>
-                <button class="add-item" id="send-btn" onclick="sendToServer()">추가</button>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>honghee</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="css/common.css">
+    <link rel="stylesheet" type="text/css" href="css/home.css">
+    <link rel="stylesheet" type="text/css" href="css/add_item.css">
+    <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <link href="https://webfontworld.github.io/yangheeryu/Dongle.css" rel="stylesheet">
+    <script src="./js/home.js" type="text/javascript"></script>
+</head>
+<body>
+    <header>
+        <div id="logo">
+            <a href="./index.html">
+                <img src="./images/home.png" alt="Honghee" class="logo">
+            </a>
+        </div>
+        <div id="menu-icon">
+            <img src="./images/hamburger.png" alt="menu">
+        </div>
+    </header>
+
+    <div id="modal" class="modal">
+        <div class="modal-content">
+            <a class="tab" href="./guide.html">매장 안내</a>
+            <a class="tab" href="./menu.html">메뉴 정보</a>
+            <a class="tab" href="./announce.html">공지 사항</a>
+            <a id="admin-btn" href="./admin.html">관리자</a>
+            <span id="close" class="close">&times;</span>
+        </div>
+    </div>
+    
+    <div class="container mt-5">
+        <div class="row justify-content-center">
+            <div class="col-md-9">
+                <div class="card">
+                    <div class="card-body">
+                        <form>
+                            <div class="form-group">
+                                <label for="imageInput">이미지 업로드</label>
+                                <input class="form-control" type="file" id="imageInput" accept="image/*" multiple>
+                            </div>
+                            <div class="form-group">
+                                <label for="nameInput">케이크 이름</label>
+                                <input class="form-control" type="text" id="nameInput" placeholder="케이크 이름">
+                            </div>
+                            <div class="form-group">
+                                <label for="priceInput">케이크 가격</label>
+                                <input class="form-control" type="number" id="priceInput" placeholder="케이크 가격">
+                            </div>
+                            <div class="form-group">
+                                <label for="infoInput">케이크 설명</label>
+                                <textarea class="form-control" id="infoInput" placeholder="케이크 설명 입력해주세요." rows="4" cols="20"></textarea>
+                            </div>
+                            <button type="button" class="btn-primary" onclick="sendToServer()">추가</button>
+                        </form>
+                    </div>
+                </div>
             </div>
         </div>
+    </div>
 
-        <script>
-            window.onload = function() {
-				checkAuth();
-			};
+    <script>
+        window.onload = function() {
+            checkAuth();
+        };
 
-			function checkAuth() {
-				var adminButton = document.getElementById('admin-btn');
-				var isAuthenticated = localStorage.getItem('auth');
+        function checkAuth() {
+            var adminButton = document.getElementById('admin-btn');
+            var isAuthenticated = localStorage.getItem('auth');
 
-				if (isAuthenticated === 'true') {
-					adminButton.innerText = '로그아웃';
-					adminButton.onclick = function() {
-						var confirmLogout = confirm('로그아웃 하시겠습니까?');
+            if (isAuthenticated === 'true') {
+                adminButton.innerText = '로그아웃';
+                adminButton.onclick = function() {
+                    var confirmLogout = confirm('로그아웃 하시겠습니까?');
 
-						if (confirmLogout) {
-							localStorage.setItem('auth', 'false');
-							location.reload(); 
-						}
-					};
-				}
-			}
-
-			//햄버거 모달창
-			var modal = document.getElementById("modal");
-			var menuIcon = document.getElementById("menu-icon");
-			var closeBtn = document.getElementById("close");
-
-			menuIcon.onclick = function() {
-				modal.style.display = "block";
-			}
-			closeBtn.onclick = function() {
-				modal.style.display = "none";
-			}
-			window.onclick = function(event) {
-				if (event.target == modal) {
-					modal.style.display = "none";
-				}
-			}
-
-            function sendToServer() {
-                const imageFiles = document.getElementById('imageInput').files;
-                const name = document.getElementById('nameInput').value;
-                const price = document.getElementById('priceInput').value;
-                const info = document.getElementById('infoInput').value;
-            
-                const formData = new FormData();
-                formData.append('img', imageFiles[0]);
-				
-				$.ajax({
-					url: 'http://15.164.167.203:3000/api/upload',
-					method: 'POST',
-					data: formData,
-					processData: false,
-					contentType: false,
-					success: function(data) {
-						const image_ = data.url;
-						$.ajax({
-							type: 'POST',
-							url: 'http://15.164.167.203:3000/menu/new',
-							contentType: 'application/json',
-							data: JSON.stringify({
-							  name: name,
-							  image: image_,
-							  info: info,
-							  price: price
-							}),
-							success: function(response) {
-							  console.log(response);
-							  alert('메뉴가 성공적으로 추가되었습니다');
-
-	            	     	nameInput.value = '';
-							imageInput.value = '';
-    	    	            priceInput.value = '';
-        	        	    infoInput.value = '';
-							},
-							error: function(error) {
-							  console.error(error);
-							}
-						  });
-					},
-					error: function() {
-						console.log('메뉴 정보를 가져오는 데 실패했습니다.');
-					}
-				});
-				  
-
+                    if (confirmLogout) {
+                        localStorage.setItem('auth', 'false');
+                        location.reload(); 
+                    }
+                };
             }
-        </script>
-    </body>
+        }
+
+        //햄버거 모달창
+        var modal = document.getElementById("modal");
+        var menuIcon = document.getElementById("menu-icon");
+        var closeBtn = document.getElementById("close");
+
+        menuIcon.onclick = function() {
+            modal.style.display = "block";
+        }
+        closeBtn.onclick = function() {
+            modal.style.display = "none";
+        }
+        window.onclick = function(event) {
+            if (event.target == modal) {
+                modal.style.display = "none";
+            }
+        }
+
+        function sendToServer() {
+            const imageFiles = document.getElementById('imageInput').files;
+            const name = document.getElementById('nameInput').value;
+            const price = document.getElementById('priceInput').value;
+            const info = document.getElementById('infoInput').value;
+        
+            const formData = new FormData();
+            formData.append('img', imageFiles[0]);
+            
+            $.ajax({
+                url: 'http://15.164.167.203:3000/api/upload',
+                method: 'POST',
+                data: formData,
+                processData: false,
+                contentType: false,
+                success: function(data) {
+                    const image_ = data.url;
+                    $.ajax({
+                        type: 'POST',
+                        url: 'http://15.164.167.203:3000/menu/new',
+                        contentType: 'application/json',
+                        data: JSON.stringify({
+                          name: name,
+                          image: image_,
+                          info: info,
+                          price: price
+                        }),
+                        success: function(response) {
+                          console.log(response);
+                          alert('메뉴가 성공적으로 추가되었습니다');
+
+                          nameInput.value = '';
+                          imageInput.value = '';
+                          priceInput.value = '';
+                          infoInput.value = '';
+                        },
+                        error: function(error) {
+                          console.error(error);
+                        }
+                      });
+                },
+                error: function() {
+                    console.log('메뉴 정보를 가져오는 데 실패했습니다.');
+                }
+            });
+        }
+    </script>
+</body>
 </html>

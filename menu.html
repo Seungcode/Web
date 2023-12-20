@@ -42,20 +42,6 @@
     </div>
 
     <script>
-        // 로컬 스토리지 지우기
-        //window.addEventListener('beforeunload', function(event) {
-            //event.preventDefault();
-            //event.returnValue = ''; 
-        
-            //const confirmationMessage = 'Are you sure you want to leave?'; 
-            //event.returnValue = confirmationMessage; 
-        
-            //return confirmationMessage;
-        //});
-        
-        //window.addEventListener('unload', function() {
-        //localStorage.clear();
-        //});
         
         window.onload = function() {
             checkAuth();
@@ -129,6 +115,22 @@
 
                         menuContainer.appendChild(menuItem);
                     });
+                    function createDeleteButton() {
+            const deleteButton = document.createElement('button');
+            deleteButton.innerText = '삭제';
+            deleteButton.addEventListener('click', () => {
+                const checkedItems = document.querySelectorAll('.item-checkbox:checked');
+                const checkedItemIds = Array.from(checkedItems).map(item => parseInt(item.closest('.menu-item').dataset.id));
+
+                menuData.data = menuData.data.filter(item => !checkedItemIds.includes(item.id));
+
+                checkedItems.forEach(item => item.closest('.menu-item').remove());
+                console.log("삭제", checkedItems);
+            });
+
+            const updateBox = document.querySelector('.update-box');
+            updateBox.appendChild(deleteButton);
+        }
 
                     $('.item-content').click(function() {
                         // 클릭한 클래스를 토글

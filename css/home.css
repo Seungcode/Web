@@ -1,13 +1,22 @@
+@font-face {
+    font-family: 'TAEBAEKmilkyway';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2310@1.0/TAEBAEKmilkyway.woff2') format('woff2');
+    font-weight: normal;
+    font-style: normal;
+}
+
 body {
     background-color: #F1F1F1;
-    
+    font-family: 'TAEBAEKmilkyway', sans-serif;
 }
+
 header {
     background-color: #F1F1F1;
     text-align: center;
     position: relative; 
     border:none;
 }
+
 #menu-icon {
     position: absolute;
     top: 20px; 
@@ -18,7 +27,7 @@ header {
 .modal {
     display: none;
     position: fixed;
-    z-index: 1;
+    z-index: 10;
     left: 0;
     top: 0;
     width: 100%;
@@ -38,7 +47,7 @@ header {
     max-width: 800px; 
     max-height: 600px;
     border-radius: 20px;
-
+    z-index: 10;
     display: flex;
     flex-direction: row;
     align-items: flex-start;
@@ -98,7 +107,13 @@ header {
     display: flex;
     align-items: center;
     justify-content: center;
-    
+    margin-top: 30px;
+}
+
+@media (max-width: 600px) {
+    .slide_wrap {
+        margin-top: 10px;
+    }
 }
 
 .slide_wrap img {
@@ -162,7 +177,6 @@ animation-name: swashIn;
     transform: scale(1, 1);
 }
 }
-
 
 /* 미디어 쿼리 */
 @media ( max-width: 768px ) {

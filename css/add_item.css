@@ -13,6 +13,7 @@ border: 1px solid red;
 }
 .add-item {
 margin: 10px;
+color: #9D3939;
 }
 
 
@@ -30,4 +31,17 @@ margin-bottom: 20px;
 padding: 5px 10px; 
 font-size: 14px; 
 margin-top: 10px;
+}
+
+.btn-primary {
+    background-color: #9D3939;
+    border: none;
+    color: #fff;
+    border-radius: 10px; /* 조절 가능한 값 */
+    padding: 10px 20px; /* 버튼 내부 여백 설정 */
+    cursor: pointer;
+}
+
+.btn-primary:hover {
+    background-color: #7b2a2a;
 }
