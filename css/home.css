@@ -238,10 +238,13 @@ header {
 
 #admin-container {
     margin-right: 10px;
+    top: 10px; 
+    right: 20px; 
 }
 
 #admin-btn {
     color: #9D3939;
+    position: fixed;
     font-size: 1em;
     cursor: pointer;
     top: 10px; 
