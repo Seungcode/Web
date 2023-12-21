@@ -1,130 +1,129 @@
 <!DOCTYPE html>
 <html lang="en">
-	<head>
-		<meta charset="UTF-8">
-		<meta name="viewport" content="width=device-width, initial-scale=1.0">
-		<title>honghee</title>
-		<link rel="stylesheet" type="text/css" href="css/common.css">
-		<link rel="stylesheet" type="text/css" href="css/home.css">
-		<link rel="stylesheet" type="text/css" href="css/guide.css">
-		<link href="https://webfontworld.github.io/yangheeryu/Dongle.css" rel="stylesheet">
-		<script src="./js/home.js" type="text/javascript"></script>
-	</head>
-	<body>
-		<header>
-			<div id="logo">
-				<a href="./index.html">
-					<img src="./images/home.png" alt="Honghee" class="logo">
-				</a>
-			</div>
-			<div id="menu-icon">
-				<img src="./images/hamburger.png" alt="menu">
-			</div>
-		</header>
-		<div style="text-align: center;">
-			<a class="tab" href="./guide.html">매장 안내</a>
-			<a class="tab" href="./menu.html">메뉴 정보</a>
-			<a class="tab" href="./announce.html">공지 사항</a>
+   <head>
+      <meta charset="UTF-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <title>honghee</title>
+      <link rel="stylesheet" type="text/css" href="css/common.css">
+      <link rel="stylesheet" type="text/css" href="css/home.css">
+      <link rel="stylesheet" type="text/css" href="css/guide.css">
+	  <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+      <link href="https://webfontworld.github.io/yangheeryu/Dongle.css" rel="stylesheet">
+      <script src="./js/home.js" type="text/javascript"></script>
+   </head>
+   <body>
+	<header>
+		<div id="logo">
+			<a href="./index.html">
+				<img src="./images/home.png" alt="Honghee" class="logo">
+			</a>
 		</div>
-		<div id="admin-container">
+		<div id="menu-icon">
+			<img src="./images/hamburger.png" alt="menu">
+		</div>
+	</header>
+
+	<div style="text-align: center;">
+		<a class="tab" href="./guide.html">매장 안내</a>
+		<a class="tab" href="./menu.html">메뉴 정보</a>
+		<a class="tab" href="./announce.html">공지 사항</a>
+	</div>
+	<div id="modal" class="modal">
+		<div class="modal-content">
+			<a class="tab2" href="./guide.html">매장 안내</a>
+			<a class="tab2" href="./menu.html">메뉴 정보</a>
+			<a class="tab2" href="./announce.html">공지 사항</a>
 			<a id="admin-btn" href="./admin.html">관리자</a>
+			<span id="close" class="close">&times;</span>
 		</div>
-		<div id="modal" class="modal">
-			<div class="modal-content">
-				<a class="tab2" href="./guide.html">매장 안내</a>
-				<a class="tab2" href="./menu.html">메뉴 정보</a>
-				<a class="tab2" href="./announce.html">공지 사항</a>
-				<a id="admin-btn" href="./admin.html">관리자</a>
-				<span id="close" class="close">&times;</span>
-			</div>
-		</div>
-		<div class="map-container">
-			<div class="map-box">
-				<h4>매장 오시는 길 안내</h4>
-				<img src="./images/honghee_map.png" alt="지도">
-				<div class="map-guide">
-					<strong>
-					도로명 주소: 서울 송파구 올림픽로12길 38 1층 honghee
-					</strong>
-					<p>
-					잠실새내역 4번 출구로 나와서 맥도날드와 롯데리아 사이 골목으로 쭉 들어오셔서 5분 정도 걸으시면 오른편에 위치해있습니다
-					</p>
-				</div>
-			</div>
-		</div>
-		<div class="boxes">
-			<div class="box">
-				<h3>영업 시간</h3>
-				<ul>
-					<li>화 12:00 - 18:30</li>
-					<li>수 12:00 - 18:30</li>
-					<li>목 12:00 - 18:30</li>
-					<li>금 12:00 - 18:30</li>
-					<li>토 12:00 - 18:30</li>
-					<li>일 정기 휴무(매주 일요일)</li>
-					<li>월 정기 휴무(매주 월요일)</li>
-				</ul>
-			</div>
-			<div class="box">
-				<h3>예약 문의</h3>
-				<ul>
-					<li>인스타그램<a href="https://www.instagram.com/honghee_cake/"> @honghee_cake</a></li>
-					<li>전화 0507-1327-2221</li>
-					<li>당근 채팅</li>
-				</ul>
-			</div>
-		</div>
+	</div>
+      <div class="map-container">
+         <div class="map-box">
+            <h3>매장 오시는 길 안내</h3>
+            <img src="./images/honghee_map.png" alt="지도">
+            <div class="map-guide">
+               <strong>
+               도로명 주소: 서울 송파구 올림픽로12길 38 1층 honghee
+               </strong>
+               <p>
+               잠실새내역 4번 출구로 나와서 맥도날드와 롯데리아 사이 골목으로 쭉 들어오셔서 5분 정도 걸으시면 오른편에 위치해있습니다
+               </p>
+            </div>
+         </div>
+      </div>
+      <div class="boxes">
+         <div class="box">
+            <h3>영업 시간</h3>
+            <ul>
+               <li>화 12:00 - 18:30</li>
+               <li>수 12:00 - 18:30</li>
+               <li>목 12:00 - 18:30</li>
+               <li>금 12:00 - 18:30</li>
+               <li>토 12:00 - 18:30</li>
+               <li>일 정기 휴무(매주 일요일)</li>
+               <li>월 정기 휴무(매주 월요일)</li>
+            </ul>
+         </div>
+         <div class="box">
+            <h3>예약 문의</h3>
+            <ul>
+               <li>인스타그램<a href="https://www.instagram.com/honghee_cake/"> @honghee_cake</a></li>
+               <li>전화 0507-1327-2221</li>
+               <li>당근 채팅</li>
+            </ul>
+         </div>
+      </div>
 
-	
-		<script>
-			window.onload = function() {
-				checkAuth();
-			};
+   
+      <script>
+         window.onload = function() {
+            checkAuth();
+         };
 
-			function checkAuth() {
-				var adminButton = document.getElementById('admin-btn');
-				var isAuthenticated = localStorage.getItem('auth');
+         function checkAuth() {
+            var adminButton = document.getElementById('admin-btn');
+            var isAuthenticated = localStorage.getItem('auth');
 
-				if (isAuthenticated === 'true') {
-					adminButton.innerText = '로그아웃';
-					adminButton.onclick = function() {
-						var confirmLogout = confirm('로그아웃 하시겠습니까?');
+            if (isAuthenticated === 'true') {
+               adminButton.innerText = '로그아웃';
+               adminButton.onclick = function() {
+                  var confirmLogout = confirm('로그아웃 하시겠습니까?');
 
-						if (confirmLogout) {
-							localStorage.setItem('auth', 'false');
-							location.reload(); 
-						}
-					};
-				}
-			}
+                  if (confirmLogout) {
+                     localStorage.setItem('auth', 'false');
+                     location.reload(); 
+                  }
+               };
+            }
+         }
 
-			//햄버거 모달창
-			var modal = document.getElementById("modal");
-			var menuIcon = document.getElementById("menu-icon");
-			var closeBtn = document.getElementById("close");
+         //햄버거 모달창
+         var modal = document.getElementById("modal");
+         var menuIcon = document.getElementById("menu-icon");
+         var closeBtn = document.getElementById("close");
 
-			menuIcon.onclick = function() {
-				modal.style.display = "block";
-			}
-			closeBtn.onclick = function() {
-				modal.style.display = "none";
-			}
-			
-			$(document).ready(function() {
-				$(".image").each(function() {
-					// Rotate each image
-					rotateImage($(this));
-				});
-			});
-				
-			function rotateImage($element) {
-			$element.css({ transformOrigin: "center center" });
-			setInterval(function() {
-				$element.css({ transform: "rotate(+=1deg)" }); // Rotate by 1 degree
-				}, 50); // Adjust the rotation speed as needed
-			}
-			
-		</script>
+         menuIcon.onclick = function() {
+            modal.style.display = "block";
+         }
+         closeBtn.onclick = function() {
+            modal.style.display = "none";
+         }
+         
+         $(document).ready(function() {
+            $(".image").each(function() {
+               // Rotate each image
+               rotateImage($(this));
+            });
+         });
+            
+         function rotateImage($element) {
+         $element.css({ transformOrigin: "center center" });
+         setInterval(function() {
+            $element.css({ transform: "rotate(+=1deg)" }); // Rotate by 1 degree
+            }, 50); // Adjust the rotation speed as needed
+         }
+         
+      </script>
 
-	</body>
+   </body>
 </html>

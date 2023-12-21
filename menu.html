@@ -105,32 +105,33 @@
                     menuData.data.forEach(item => {
                         const menuItem = document.createElement('div');
                         menuItem.classList.add('menu-item');
-                        menuItem.dataset.id = item.id;
+                        menuItem.dataset.id = item.menu_id;
 
                         menuItem.innerHTML = `
                             <div class="item-content">
                                 <input type="checkbox" class="item-checkbox" hidden>
+                                <div class="item-inner-content">
                                 <img src="${item.image}" alt="${item.name}">
                                 <h3>${item.name}</h3>
                                 <p>가격: ${item.price}원</p>
                                 <p class="item-info">${item.info}</p>
+                                </div>
                             </div>
                             <button id="edit-btn" hidden>수정</button>  
                         `;
 
                         menuContainer.appendChild(menuItem);
                     });
-                    $('.item-content').click(function() {
-                        // 클릭한 클래스를 토글
-                        $(this).toggleClass('item-content-clicked');
-
-                        // item-info의 가시성을 토글
-                        const itemInfo = $(this).find('.item-info');
-                        itemInfo.toggleClass('show-info');
-                    });
                checkAuth();
-                },
-                
+                $('.item-content').click(function() {
+                    // 클릭한 클래스를 토글
+                    $(this).toggleClass('item-content-clicked');
+
+                    // item-info의 가시성을 토글
+                    const itemInfo = $(this).find('.item-info');
+                    itemInfo.toggleClass('show-info');
+                });
+            },
                 error: function() {
                     console.log('메뉴 정보를 가져오는 데 실패했습니다.');
                 }
@@ -145,8 +146,8 @@
             deleteButton.addEventListener('click', () => {
                 const checkedItems = document.querySelectorAll('.item-checkbox:checked');
                 const checkedItemIds = Array.from(checkedItems).map(item => parseInt(item.closest('.menu-item').dataset.id));
-
-                menuData.data = menuData.data.filter(item => !checkedItemIds.includes(item.id));
+                console.log(checkedItemIds)
+                menuData.data = menuData.data.filter(item => !checkedItemIds.includes(item.menu_id));
 
                 checkedItems.forEach(item => item.closest('.menu-item').remove());
                 console.log("삭제", checkedItems);
@@ -168,19 +169,6 @@
             const updateBox = document.querySelector('.update-box');
             updateBox.appendChild(addButton);
         }
-      // 케이크 정보 알려주기
-      const itemContents = document.querySelectorAll('.item-content');
-
-      itemContents.forEach(item => {
-         item.addEventListener('click', () => {
-            
-            item.classList.toggle('item-content-clicked');
-
-            
-            const itemInfo = item.querySelector('.item-info');
-            itemInfo.classList.toggle('show-info');
-         });
-      });
     </script>
 
 </body>

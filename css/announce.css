@@ -1,90 +1,77 @@
+@font-face {
+    font-family: 'ChosunGu';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_20-04@1.0/ChosunGu.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+
 .announce-container {
     display: flex;
     flex-wrap: wrap;
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    border-radius: 10px;
     margin-top: 20px;
-}
-div {
-    text-align: center;
-  }
-
-.detail-container {
-    display: flex;
-    flex-wrap: wrap;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    margin-top: 20px;
-}
-
-.announce-box {
+    }
+    
+    .announce-box {
     width: 600px;
     margin-bottom: 20px;
     padding: 20px;
-    border: 3px solid #dcdcdc;
-    border-radius: 10px;
+    border: 3px solid #ccc;
     box-sizing: border-box;
-}
-
-a.item-title {
-    color: #333333;
-}
-
-.item-container {
+    }
+    /* 
+    a.item-title {
+    color: black;
+    } */
+    
+    .item-container {
     display: flex;
     flex-direction: row;
     align-items: center;
     margin: 5px;
-}
-
-.item-container input {
+    }
+    
+    .item-container input {
     margin-right: 10px; 
-}
-
-.update-box {
+    }
+    
+    .update-box {
     display: flex;
     justify-content: flex-end;
     margin-top: 20px;
-}
-
-.update-box button {
+    }
+    .update-box button {
     margin-left: 10px;
-}
-
-.center-maker {
+    padding: 2px;
+    }
+    
+    
+    .center-maker {
     display: flex;
     justify-content: center; 
     align-items: center; 
-}
-
-.center {
-    /* width: 80%; */
+    }
+    
+    .center {
     display: flex;
     flex-direction: column;
     align-items: center;
-}
-
-/* 미디어 쿼리 추가 */
-@media screen and (max-width: 600px) {
-    .announce-box {
-        width: 100%; /* 미디어 쿼리 적용 시 너비를 100%로 조절 */
     }
-}
 
-.delete-button,
-.add-button {
-    padding: 8px 12px;
-    font-size: 14px;
-    margin: 5px;
-    border: 1px solid #dcdcdc; /* 매우 얇은 테두리 추가 */
-    border-radius: 5px;
-    background-color: #edede5; /* 배경 색상 */
-    color: #333333; /* 글자색 */
-    cursor: pointer;
-}
+    .delete-button,
+    .add-button {
+        font-family: 'ChosunGu';
+        padding: 20px 30px;
+        font-size: 20px;
+        margin: 5px;
+        border: 1px solid #dcdcdc; /* 매우 얇은 테두리 추가 */
+        border-radius: 5px;
+        background-color: #edede5; /* 배경 색상 */
+        color: #333333; /* 글자색 */
+        cursor: pointer;
+    }
 
 /* 마우스 호버 시 효과 추가 */
 .delete-button:hover,
