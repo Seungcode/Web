@@ -189,9 +189,12 @@
                     const itemInfo = $(this).find('.item-info');
                     itemInfo.toggleClass('show-info');
                 });
-                $('#edit-btn').click(function() {
-                    window.location.href = `update_menu.html?id=${$(this).data('number')}`;
-                });     
+                document.querySelectorAll('#edit-btn').forEach(editBtn => {
+                    editBtn.addEventListener('click', function() {
+                        window.location.href = `update_menu.html?id=${this.dataset.number}`;
+                    });
+                }); 
+            
             },
                 error: function() {
                     console.log('메뉴 정보를 가져오는 데 실패했습니다.');

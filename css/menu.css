@@ -85,7 +85,7 @@ border: none;
 border-radius: 5px;
 background-color: rgb(223, 129, 129);
 color: white;
-/* margin-top: 10px; */
+ margin-bottom: 10px; 
 }
 
 .update-box {
@@ -166,7 +166,7 @@ color: #edede5;
         font-size: 15px;
         margin-top: 7px;
     }
-    #edit-btn{
+    .edit-btn{
         padding: 10px 15px;
         font-size: 10px;
     }
