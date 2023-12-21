@@ -33,10 +33,10 @@
 
     <div id="modal" class="modal swashIn">
         <div class="modal-content">
-            <a class="tab" href="./guide.html">매장 안내</a>
-            <a class="tab" href="./menu.html">메뉴 정보</a>
-            <a class="tab" href="./announce.html">공지 사항</a>
-            <a id="admin-btn" href="./admin.html">관리자</a>
+            <a class="tab2" href="./guide.html">매장 안내</a>
+            <a class="tab2" href="./menu.html">메뉴 정보</a>
+            <a class="tab2" href="./announce.html">공지 사항</a>
+            <a id="admin-btn1" href="./admin.html">관리자</a>
             <span id="close" class="close">&times;</span>
         </div>
     </div>
@@ -50,9 +50,9 @@
     </div>
 
     <script>
-    
         function checkAuth() {
             var adminButton = document.getElementById('admin-btn');
+            var adminButton1 = document.getElementById('admin-btn1');
             var isAuthenticated = localStorage.getItem('auth');
             var itemCheckbox = document.querySelectorAll('.item-checkbox');
             var editBtn = document.querySelectorAll('#edit-btn');
@@ -60,7 +60,16 @@
     
             if (isAuthenticated === 'true') {
                 adminButton.innerText = '로그아웃';
+                adminButton1.innerText = '로그아웃';
                 adminButton.onclick = function() {
+                    var confirmLogout = confirm('로그아웃 하시겠습니까?');
+
+                    if (confirmLogout) {
+                        localStorage.setItem('auth', 'false');
+                        location.reload(); 
+                    }
+                };
+                adminButton1.onclick = function() {
                     var confirmLogout = confirm('로그아웃 하시겠습니까?');
 
                     if (confirmLogout) {
@@ -94,6 +103,8 @@
 
         $(document).ready(function() {
             // 페이지 로드 시 AJAX를 통해 메뉴 정보를 가져옴
+            console.log(!localStorage.getItem('auth'));
+            if(localStorage.getItem('auth')=='false'){
             $.ajax({
                 url: 'http://15.164.167.203:3000/menu/info',
                 method: 'GET',
@@ -117,7 +128,7 @@
                                 <p class="item-info">${item.info}</p>
                                 </div>
                             </div>
-                            <button id="edit-btn" hidden>수정</button>  
+                            <button id="edit-btn" data-number = ${item.menu_id} hidden>수정</button>  
                         `;
 
                         menuContainer.appendChild(menuItem);
@@ -131,28 +142,62 @@
                     const itemInfo = $(this).find('.item-info');
                     itemInfo.toggleClass('show-info');
                 });
-                function createDeleteButton() {
-                    const deleteButton = document.createElement('button');
-                    deleteButton.innerText = '삭제';
-                    deleteButton.classList.add('delete-button');
-                    deleteButton.addEventListener('click', () => {
-                        const checkedItems = document.querySelectorAll('.item-checkbox:checked');
-                        const checkedItemIds = Array.from(checkedItems).map(item => parseInt(item.closest('.menu-item').dataset.id));
-                        console.log(checkedItemIds)
-                        menuData.data = menuData.data.filter(item => !checkedItemIds.includes(item.menu_id));
-        
-                        checkedItems.forEach(item => item.closest('.menu-item').remove());
-                        console.log("삭제", checkedItems);
-                    });
-        
-                    const updateBox = document.querySelector('.update-box');
-                    updateBox.appendChild(deleteButton);
-                }        
+                $('#edit-btn').click(function() {
+                    window.location.href = `update_menu.html?id=${$(this).data('number')}`;
+                });     
             },
                 error: function() {
                     console.log('메뉴 정보를 가져오는 데 실패했습니다.');
                 }
             });
+        }
+        else{
+            $.ajax({
+                url: 'http://15.164.167.203:3000/menu/admin',
+                method: 'GET',
+                dataType: 'json',
+                success: function(menuData) {
+                    // 메뉴 데이터를 동적으로 출력
+                    const menuContainer = document.querySelector('.menu-items');
+
+                    menuData.data.forEach(item => {
+                        const menuItem = document.createElement('div');
+                        menuItem.classList.add('menu-item');
+                        menuItem.dataset.id = item.menu_id;
+
+                        menuItem.innerHTML = `
+                            <div class="item-content">
+                                <input type="checkbox" class="item-checkbox" hidden>
+                                <div class="item-inner-content">
+                                <img src="${item.image}" alt="${item.name}">
+                                <h3>${item.name}</h3>
+                                <p>가격: ${item.price}원</p>
+                                <p class="item-info">${item.info}</p>
+                                </div>
+                            </div>
+                            <button id="edit-btn" data-number = ${item.menu_id} hidden>수정</button>  
+                        `;
+
+                        menuContainer.appendChild(menuItem);
+                    });
+               checkAuth();
+                $('.item-content').click(function() {
+                    // 클릭한 클래스를 토글
+                    $(this).toggleClass('item-content-clicked');
+
+                    // item-info의 가시성을 토글
+                    const itemInfo = $(this).find('.item-info');
+                    itemInfo.toggleClass('show-info');
+                });
+                $('#edit-btn').click(function() {
+                    window.location.href = `update_menu.html?id=${$(this).data('number')}`;
+                });     
+            },
+                error: function() {
+                    console.log('메뉴 정보를 가져오는 데 실패했습니다.');
+                }
+            }); 
+        }
         });
 
         // 삭제

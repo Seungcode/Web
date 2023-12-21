@@ -20,24 +20,25 @@
                 <img src="./images/home.png" alt="Honghee" class="logo">
             </a>
         </div>
-        <div id="menu-icon">
+        <div id="menu-icon"> 
             <img src="./images/hamburger.png" alt="menu">
         </div>
+        <div>
+            <a class="tab" href="./guide.html">매장 안내</a>
+            <a class="tab" href="./menu.html">메뉴 정보</a>
+            <a class="tab" href="./announce.html">공지 사항</a>
+        </div>
+        <div id="admin-container">
+        <a id="admin-btn" href="./admin.html">관리자</a>
+        </div>
     </header>
-	<div style="text-align: center;">
-		<a class="tab" href="./guide.html">매장 안내</a>
-		<a class="tab" href="./menu.html">메뉴 정보</a>
-		<a class="tab" href="./announce.html">공지 사항</a>
-	</div>
-	<div id="admin-container">
-		<a id="admin-btn" href="./admin.html">관리자</a>
-	</div>
-    <div id="modal" class="modal">
+
+    <div id="modal" class="modal swashIn">
         <div class="modal-content">
             <a class="tab2" href="./guide.html">매장 안내</a>
             <a class="tab2" href="./menu.html">메뉴 정보</a>
             <a class="tab2" href="./announce.html">공지 사항</a>
-            <a id="admin-btn" href="./admin.html">관리자</a>
+            <a id="admin-btn1" href="./admin.html">관리자</a>
             <span id="close" class="close">&times;</span>
         </div>
     </div>
@@ -79,22 +80,44 @@
             checkAuth();
         };
 
-        function checkAuth() {
-            var adminButton = document.getElementById('admin-btn');
-            var isAuthenticated = localStorage.getItem('auth');
-
-            if (isAuthenticated === 'true') {
-                adminButton.innerText = '로그아웃';
-                adminButton.onclick = function() {
-                    var confirmLogout = confirm('로그아웃 하시겠습니까?');
-
-                    if (confirmLogout) {
-                        localStorage.setItem('auth', 'false');
-                        location.reload(); 
-                    }
-                };
+            function checkAuth() {
+                var adminButton = document.getElementById('admin-btn');
+                var adminButton1 = document.getElementById('admin-btn1');
+                var isAuthenticated = localStorage.getItem('auth');
+                var itemCheckbox = document.querySelectorAll('.item-checkbox');
+                var editBtn = document.querySelectorAll('#edit-btn');
+             console.log("isAuthenticated",isAuthenticated);
+        
+                if (isAuthenticated === 'true') {
+                    adminButton.innerText = '로그아웃';
+                    adminButton1.innerText = '로그아웃';
+                    adminButton.onclick = function() {
+                        var confirmLogout = confirm('로그아웃 하시겠습니까?');
+    
+                        if (confirmLogout) {
+                            localStorage.setItem('auth', 'false');
+                            location.reload(); 
+                        }
+                    };
+                    adminButton1.onclick = function() {
+                        var confirmLogout = confirm('로그아웃 하시겠습니까?');
+    
+                        if (confirmLogout) {
+                            localStorage.setItem('auth', 'false');
+                            location.reload(); 
+                        }
+                    };
+    
+                    itemCheckbox.forEach(action => {
+                        action.removeAttribute('hidden');
+                    });
+                    editBtn.forEach(action => {
+                        action.removeAttribute('hidden');
+                    });
+                    createDeleteButton();
+                    createAddButton();
+                }
             }
-        }
 
         //햄버거 모달창
         var modal = document.getElementById("modal");
