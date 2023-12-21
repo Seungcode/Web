@@ -131,6 +131,23 @@
                     const itemInfo = $(this).find('.item-info');
                     itemInfo.toggleClass('show-info');
                 });
+                function createDeleteButton() {
+                    const deleteButton = document.createElement('button');
+                    deleteButton.innerText = '삭제';
+                    deleteButton.classList.add('delete-button');
+                    deleteButton.addEventListener('click', () => {
+                        const checkedItems = document.querySelectorAll('.item-checkbox:checked');
+                        const checkedItemIds = Array.from(checkedItems).map(item => parseInt(item.closest('.menu-item').dataset.id));
+                        console.log(checkedItemIds)
+                        menuData.data = menuData.data.filter(item => !checkedItemIds.includes(item.menu_id));
+        
+                        checkedItems.forEach(item => item.closest('.menu-item').remove());
+                        console.log("삭제", checkedItems);
+                    });
+        
+                    const updateBox = document.querySelector('.update-box');
+                    updateBox.appendChild(deleteButton);
+                }        
             },
                 error: function() {
                     console.log('메뉴 정보를 가져오는 데 실패했습니다.');
@@ -147,12 +164,22 @@
                 const checkedItems = document.querySelectorAll('.item-checkbox:checked');
                 const checkedItemIds = Array.from(checkedItems).map(item => parseInt(item.closest('.menu-item').dataset.id));
                 console.log(checkedItemIds)
-                menuData.data = menuData.data.filter(item => !checkedItemIds.includes(item.menu_id));
-
-                checkedItems.forEach(item => item.closest('.menu-item').remove());
-                console.log("삭제", checkedItems);
+                for (const checkedItemId of checkedItemIds) {
+                    $.ajax({
+                        url: `http://15.164.167.203:3000/menu/drop?id=${checkedItemId}`,
+                        method: 'DELETE',
+                        success: function() {
+                            console.log('메뉴 삭제 성공');
+                            const deletedItem = document.querySelector(`.menu-item[data-id="${checkedItemId}"]`);
+                            deletedItem.remove();
+                        },
+                        
+                        error: function() {
+                            console.log('메뉴 정보를 가져오는 데 실패했습니다.');
+                        }
+                    });
+                }
             });
-
             const updateBox = document.querySelector('.update-box');
             updateBox.appendChild(deleteButton);
         }
