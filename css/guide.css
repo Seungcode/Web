@@ -6,7 +6,7 @@
     }
     
     .map-box {
-    width: 60%;
+    width: 80%;
     margin-bottom: 20px;
     padding: 20px;
     border: 1px solid #ccc;
@@ -21,7 +21,7 @@
     }
     
     .box {
-    width: 29%;
+    width: 39%;
     margin-left: 12px;
     margin-right: 12px;
     margin-bottom: 100px;
@@ -83,4 +83,11 @@
     
     .bomb2 {
     background-image: url('./../images/bombcandle2.png');
+    }
+
+    @media only screen and (max-width: 768px) { 
+        .box{
+            width: 80%;
+            margin-bottom: 30px;
+        }
     }
