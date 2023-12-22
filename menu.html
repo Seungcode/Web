@@ -122,10 +122,10 @@
                             <div class="item-content">
                                 <input type="checkbox" class="item-checkbox" hidden>
                                 <div class="item-inner-content">
-                                <img src="${item.image}" alt="${item.name}">
-                                <h3>${item.name}</h3>
-                                <p>가격: ${item.price}원</p>
-                                <p class="item-info">${item.info}</p>
+                                    <img src="${item.image}" alt="${item.name}">
+                                    <h3>${item.name}</h3>
+                                    <p>가격: ${item.price}원</p>
+                                    <p class="item-info">${item.info}</p>
                                 </div>
                             </div>
                             <button id="edit-btn" data-number = ${item.menu_id} hidden>수정</button>  
@@ -134,7 +134,7 @@
                         menuContainer.appendChild(menuItem);
                     });
                checkAuth();
-                $('.item-content').click(function() {
+                $('.item-inner-content').click(function() {
                     // 클릭한 클래스를 토글
                     $(this).toggleClass('item-content-clicked');
 
@@ -169,10 +169,10 @@
                             <div class="item-content">
                                 <input type="checkbox" class="item-checkbox" hidden>
                                 <div class="item-inner-content">
-                                <img src="${item.image}" alt="${item.name}">
-                                <h3>${item.name}</h3>
-                                <p>가격: ${item.price}원</p>
-                                <p class="item-info">${item.info}</p>
+                                    <img src="${item.image}" alt="${item.name}">
+                                    <h3>${item.name}</h3>
+                                    <p>가격: ${item.price}원</p>
+                                    <p class="item-info">${item.info}</p>
                                 </div>
                             </div>
                             <button id="edit-btn" data-number = ${item.menu_id} hidden>수정</button>  
@@ -181,7 +181,7 @@
                         menuContainer.appendChild(menuItem);
                     });
                checkAuth();
-                $('.item-content').click(function() {
+                $('.item-inner-content').click(function() {
                     // 클릭한 클래스를 토글
                     $(this).toggleClass('item-content-clicked');
 

@@ -64,21 +64,16 @@
     .delete-button,
     .add-button {
         font-family: 'ChosunGu';
-        padding: 20px 30px;
-        font-size: 20px;
-        margin: 5px;
-        border: 1px solid #dcdcdc; /* 매우 얇은 테두리 추가 */
-        border-radius: 5px;
-        background-color: #edede5; /* 배경 색상 */
-        color: #333333; /* 글자색 */
-        cursor: pointer;
+    width: 60px;
+    height: 40px;
+    font-size: 20px;
+    font-weight: lighter;
+    border: 1px solid #dcdcdc; /* 매우 얇은 테두리 추가 */
+    border-radius: 5px;
+    background-color: #edede5; /* 배경 색상 */
+    color: #333333; /* 글자색 */
+    cursor: pointer;
     }
-
-/* 마우스 호버 시 효과 추가 */
-.delete-button:hover,
-.add-button:hover {
-    background-color: #dcdcdc; /* 마우스 호버 시 배경 색상 변경 */
-}
 .menu-items {
     display: flex;
     flex-wrap: wrap;

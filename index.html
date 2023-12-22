@@ -116,7 +116,9 @@
       const imgElement = document.querySelector('.slide_wrap img');
       const prevButton = document.querySelector('.slide_prev_button');
       const nextButton = document.querySelector('.slide_next_button');
-
+      imgElement.addEventListener('click', function() {
+         window.location.href = './menu.html'; // 이미지 클릭 시 이동할 페이지의 URL을 설정
+      });
       let currentIndex = 0;
 
       function showImage(index) {

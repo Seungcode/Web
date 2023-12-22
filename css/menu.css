@@ -64,7 +64,11 @@ max-height: 500px;
 
 .item-content img {
 width: 100%;
-height: 80%;
+height: 300px;
+}
+
+p.item-info.show-info {
+    text-align: left;
 }
 
 .item-checkbox {
@@ -218,6 +222,9 @@ color: #edede5;
     .item-content-clicked .show-info {
         width: 200px;
         margin: 0px;
+    }
+    .item-content img{
+        height: 200px;
     }
     
 }
