@@ -11,14 +11,14 @@
    </head>
    <body>
       <header>
-         <div id="logo">
-            <a href="./index.html">
-               <img src="./images/home.png" alt="Honghee" class="logo">
-            </a>
-         </div>
-         <div id="menu-icon">
-            <img src="./images/hamburger.png" alt="menu">
-         </div>
+          <div id="logo">
+              <a href="./index.html">
+                  <img src="./images/home.png" alt="Honghee" class="logo">
+              </a>
+          </div>
+          <div id="menu-icon"> 
+              <img src="./images/hamburger.png" alt="menu">
+          </div>
       </header>
    
       <div style="text-align: center;">
@@ -57,21 +57,41 @@
         };
 
         function checkAuth() {
-            var adminButton = document.getElementById('admin-btn');
-            var isAuthenticated = localStorage.getItem('auth');
+         var adminButton = document.getElementById('admin-btn');
+         var adminButton1 = document.getElementById('admin-btn1');
+         var isAuthenticated = localStorage.getItem('auth');
+         var itemCheckbox = document.querySelectorAll('.item-checkbox');
+         var editBtn = document.querySelectorAll('#edit-btn');
+      console.log("isAuthenticated",isAuthenticated);
+ 
+         if (isAuthenticated === 'true') {
+             adminButton.innerText = '로그아웃';
+             adminButton1.innerText = '로그아웃';
+             adminButton.onclick = function() {
+                 var confirmLogout = confirm('로그아웃 하시겠습니까?');
 
-            if (isAuthenticated === 'true') {
-                adminButton.innerText = '로그아웃';
-                adminButton.onclick = function() {
-                    var confirmLogout = confirm('로그아웃 하시겠습니까?');
+                 if (confirmLogout) {
+                     localStorage.setItem('auth', 'false');
+                     location.reload(); 
+                 }
+             };
+             adminButton1.onclick = function() {
+                 var confirmLogout = confirm('로그아웃 하시겠습니까?');
 
-                    if (confirmLogout) {
-                        localStorage.setItem('auth', 'false');
-                        location.reload(); 
-                    }
-                };
-            }
-        }
+                 if (confirmLogout) {
+                     localStorage.setItem('auth', 'false');
+                     location.reload(); 
+                 }
+             };
+
+             itemCheckbox.forEach(action => {
+                 action.removeAttribute('hidden');
+             });
+             editBtn.forEach(action => {
+                 action.removeAttribute('hidden');
+             });
+         }
+     }
 
       //햄버거 모달창
       var modal = document.getElementById("modal");

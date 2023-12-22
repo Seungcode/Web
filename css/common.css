@@ -38,4 +38,22 @@ color: inherit;
 }
 
 
-
+.menu-items {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    margin-top: 20px;
+    margin-bottom: 80px;
+    }
+    
+    .menu-item {
+    width: 300px;
+    background-color: white;
+    position: relative;
+    padding: 10px; 
+    border-radius: 10px;
+    margin: 40px;
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+    }

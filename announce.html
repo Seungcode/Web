@@ -18,24 +18,25 @@
 					<img src="./images/home.png" alt="Honghee" class="logo">
 				</a>
 			</div>
-			<div id="menu-icon">
+			<div id="menu-icon"> 
 				<img src="./images/hamburger.png" alt="menu">
 			</div>
-		</header>
-		<div style="text-align: center;">
-					<a class="tab" href="./guide.html">매장 안내</a>
-					<a class="tab" href="./menu.html">메뉴 정보</a>
-					<a class="tab" href="./announce.html">공지 사항</a>
-		</div>
-		<div id="admin-container">
+			<div>
+				<a class="tab" href="./guide.html">매장 안내</a>
+				<a class="tab" href="./menu.html">메뉴 정보</a>
+				<a class="tab" href="./announce.html">공지 사항</a>
+			</div>
+			<div id="admin-container">
 			<a id="admin-btn" href="./admin.html">관리자</a>
-		</div>
-		<div id="modal" class="modal">
+			</div>
+		</header>
+	
+		<div id="modal" class="modal swashIn">
 			<div class="modal-content">
 				<a class="tab2" href="./guide.html">매장 안내</a>
 				<a class="tab2" href="./menu.html">메뉴 정보</a>
 				<a class="tab2" href="./announce.html">공지 사항</a>
-				<a id="admin-btn" href="./admin.html">관리자</a>
+				<a id="admin-btn1" href="./admin.html">관리자</a>
 				<span id="close" class="close">&times;</span>
 			</div>
 		</div>
@@ -58,25 +59,36 @@
 		<script>
 			function checkAuth() {
 				var adminButton = document.getElementById('admin-btn');
+				var adminButton1 = document.getElementById('admin-btn1');
 				var isAuthenticated = localStorage.getItem('auth');
-				var itemCheckboxes = document.querySelectorAll('.item-checkbox');
+				var itemCheckbox = document.querySelectorAll('.item-checkbox');
+				
+			 	console.log("isAuthenticated",isAuthenticated);
 		
 				if (isAuthenticated === 'true') {
 					adminButton.innerText = '로그아웃';
+					adminButton1.innerText = '로그아웃';
 					adminButton.onclick = function() {
 						var confirmLogout = confirm('로그아웃 하시겠습니까?');
-
+	
 						if (confirmLogout) {
 							localStorage.setItem('auth', 'false');
 							location.reload(); 
 						}
 					};
-					
-					itemCheckboxes.forEach(action => {
+					adminButton1.onclick = function() {
+						var confirmLogout = confirm('로그아웃 하시겠습니까?');
+	
+						if (confirmLogout) {
+							localStorage.setItem('auth', 'false');
+							location.reload(); 
+						}
+					};
+	
+					itemCheckbox.forEach(action => {
 						action.removeAttribute('hidden');
 					});
-					createDeleteButton();
-					createAddButton();
+					
 				}
 			}
 
@@ -105,6 +117,7 @@
 						eventData.data.forEach(item => {
 							const itemContainer = document.createElement('div');
 							itemContainer.classList.add('item-container');
+							itemContainer.dataset.id = item.noti_id;
 			 
 							const content = `
 							<input type="checkbox" class="item-checkbox" hidden>
@@ -114,10 +127,11 @@
 							itemContainer.innerHTML = content;
 							eventAnnounceBox.appendChild(itemContainer);
 						});
+						checkAuth();
 					},
 					
 					error: function() {
-						console.log('메뉴 정보를 가져오는 데 실패했습니다.');
+						console.log('공지 사항 정보를 가져오는 데 실패했습니다.');
 					}
 				});
 			});
@@ -136,6 +150,7 @@
 						noticeData.data.forEach(item => {
 							const itemContainer = document.createElement('div');
 							itemContainer.classList.add('item-container');
+							itemContainer.dataset.id = item.noti_id;
 			
 							const content = `
 							<input type="checkbox" class="item-checkbox" hidden>
@@ -146,10 +161,12 @@
 							noticeAnnounceBox.appendChild(itemContainer);
 						});
 						checkAuth();
+						createDeleteButton();
+						createAddButton();
 					},
 					
 					error: function() {
-						console.log('메뉴 정보를 가져오는 데 실패했습니다.');
+						console.log('공지 사항 정보를 가져오는 데 실패했습니다.');
 					}
 				});
 			});
@@ -161,12 +178,23 @@
 				deleteButton.classList.add('delete-button');
 				deleteButton.addEventListener('click', () => {
 					const checkedItems = document.querySelectorAll('.item-checkbox:checked');
-					const checkedItemIds = Array.from(checkedItems).map(item => parseInt(item.closest('.announce-item').dataset.id));
-
-					menuData.data = menuData.data.filter(item => !checkedItemIds.includes(item.id));
-
-					checkedItems.forEach(item => item.closest('.announce-item').remove());
-					console.log("삭제",checkedItems);
+                    const checkedItemIds = Array.from(checkedItems).map(item => parseInt(item.closest('.item-container').dataset.id));
+                    console.log(checkedItemIds)
+                    for (const checkedItemId of checkedItemIds) {
+                        $.ajax({
+                            url: `http://15.164.167.203:3000/noti/drop?id=${checkedItemId}`,
+                            method: 'DELETE',
+                            success: function() {
+                                console.log('공지 사항 삭제 성공');
+                                const deletedItem = document.querySelector(`.item-container[data-id="${checkedItemId}"]`);
+                                deletedItem.remove();
+                            },
+                            
+                            error: function() {
+                                console.log('공지 사항 정보를 가져오는 데 실패했습니다.');
+                            }
+                        });
+                    }
 				});
 
 				const updateBox = document.querySelector('.update-box');

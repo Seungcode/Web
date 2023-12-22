@@ -3,9 +3,9 @@
     font-style: normal;
     font-weight: 400;
     src: url('//cdn.jsdelivr.net/korean-webfonts/1/corps/godo/Godo/GodoM.woff2') format('woff2'), url('//cdn.jsdelivr.net/korean-webfonts/1/corps/godo/Godo/GodoM.woff') format('woff');
-  }
+}
 
-  @font-face {
+@font-face {
     font-family: 'TTTtangsbudaejjigaeB';
     src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2212@1.0/TTTtangsbudaejjigaeB.woff2') format('woff2');
     font-weight: 300;
@@ -21,7 +21,7 @@ header {
     background-color: #F1F1F1;
     text-align: center;
     position: relative; 
-    border:none;
+    border: none;
 }
 
 #menu-icon {
@@ -30,12 +30,13 @@ header {
     top: 20px; 
     right: 20px; 
     cursor: pointer;
+    z-index: 100;
 }
 
 .modal {
     display: none;
     position: fixed;
-    z-index: 10;
+    z-index: 101;
     left: 0;
     top: 0;
     width: 100%;
@@ -44,22 +45,24 @@ header {
     background-color: rgba(0, 0, 0, 0.7);
 }
 .modal-content {
+    display: grid;
+    grid-template-rows: repeat(auto, 1fr);
     position: relative;
     background-color: #F1F1F1;
     margin: 10% auto;
     padding: 20px;
     border: 1px solid #888;
     width: 80%; 
-    height: 50%;
+    height: 60%;
     max-width: 800px; 
     max-height: 600px;
     border-radius: 20px;
-
-    display: flex;
+    z-index: 10;
     flex-direction: row;
     align-items: flex-start;
     justify-content: space-around;
-
+    margin-top: 30%;
+    white-space: nowrap;
 }
 
 .tab, .tab2 {
@@ -70,24 +73,33 @@ header {
     margin-top: 2%;
     margin-right: 5%;
     margin-left: 5%;
-    font-family: 'TTTtangsbudaejjigaeB','Dongle';
+    font-family: 'TTTtangsbudaejjigaeB', 'Dongle';
 }
-/* 
+
 .tab2 {
     color: #9D3939;
     font-weight: bold;
-    font-size: 32px;
-    font-family: 'TTTtangsbudaejjigaeB','Dongle';
-    display: inline-block; 
-    margin-top: 10px; 
-} */
+    font-size: 1.5em; 
+    display: block;
+    margin-bottom: 3%; 
+    margin-top: 2%;
+    margin-right: 5%;
+    margin-left: 5%;
+    font-family: 'TTTtangsbudaejjigaeB', 'Dongle';
+}
 
 @media (max-width: 600px) {
     .tab {
         font-size: 1.25em; /* 상대적으로 작은 크기로 설정 */
     }
+    .slide_wrap {
+        width: 300px;
+    }
+    .slide_wrap img{
+        width: 200px;
+    }
 }
-
+/* 
 #admin-btn {
     position: absolute;
     top: 10px; 
@@ -97,7 +109,7 @@ header {
     font-size: 1em;
     cursor: pointer;
     margin-left: 10%;
-}
+} */
 
 .close {
     color: #aaa;
@@ -113,7 +125,6 @@ header {
     width: 350px;
     height: auto;
 }
-
 
 /* 슬라이드 */
 .slide-container {
@@ -140,6 +151,11 @@ header {
     border-radius: 15px;
     width: 1000px;
 }
+@media (max-width: 600px) {
+    .slide_wrap img {
+        width: 300px; /* 화면 폭이 600px 이하일 때 이미지 크기를 300px로 조정 */
+    }
+}
 
 .slide_button {
     position: absolute;
@@ -157,17 +173,9 @@ header {
     left: 10px;
 }
 
-#admin-btn2 {
-    position: absolute;
-    bottom: 20px; 
-    right: 20px; 
-    font-family: 'TTTtangsbudaejjigaeB','Dongle';
-    color: #9D3939;
-}
-
 
 /* 미디어 쿼리 */
-@media ( max-width: 1100px ) {
+@media (max-width: 1100px) {
     .slide_wrap img {
         width: 700px;
     }
@@ -175,17 +183,36 @@ header {
         margin-bottom: 0px;
     }
     
+    
 }
 
 
 #admin-container {
     margin-right: 10px;
+    top: 10px; 
+    right: 20px; 
 }
 
+#admin-btn {
+    color: #9D3939;
+    position: fixed;
+    font-size: 1em;
+    cursor: pointer;
+    top: 10px; 
+    right: 20px; 
+}
 
-@media only screen and (max-width: 768px) {
+#admin-btn1 {
+    color: #9D3939;
+    font-size: 1em;
+    cursor: pointer;
+    margin-left: 10%;
+    text-align: center;
+}
+
+@media only screen and (max-width: 768px) { 
     #admin-btn {
-        display: none; /* 화면이 작아지면 관리자 버튼 숨김 */
+        display: none;
     }
 
     #menu-icon {
@@ -200,8 +227,16 @@ header {
         width: 500px;
     }
     .slide-container {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100%;
+        width: 100%;
+        overflow: auto;
+        z-index: -1;
         margin-top: 100px;
-    } 
+    }
+     
    
 }
 @media ( max-width: 690px ) {
