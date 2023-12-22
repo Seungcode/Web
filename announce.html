@@ -91,8 +91,6 @@
 					editBtn.forEach(action => {
 						action.removeAttribute('hidden');
 					});
-					createDeleteButton();
-					createAddButton();
 				}
 			}
 
@@ -131,6 +129,7 @@
 							itemContainer.innerHTML = content;
 							eventAnnounceBox.appendChild(itemContainer);
 						});
+						checkAuth();
 					},
 					
 					error: function() {
@@ -164,6 +163,8 @@
 							noticeAnnounceBox.appendChild(itemContainer);
 						});
 						checkAuth();
+						createDeleteButton();
+						createAddButton();
 					},
 					
 					error: function() {
