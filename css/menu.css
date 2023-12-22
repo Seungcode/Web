@@ -15,19 +15,23 @@ body {
       url('./../images/heartcandle2.png'),
       url('./../images/bearcandle1.png'),
       url('./../images/bearcandle2.png'),
-      url('./../images/heartcandle2.png');
+      url('./../images/heartcandle2.png'),
+      url('./../images/bombcandle1.png');
+      
     background-repeat: no-repeat; 
     background-size: 300px; 
     background-position:
-      -80px 280px, /* bearcandle1.png */
+      -80px 320px, /* bearcandle1.png */
       1200px 750px, /* bearcandle2.png */
-      1160px 400px, /* bombcandle1.png */
+      400px 400px, /* bombcandle1.png */
       0 1030px, /* bombcandle2.png */
-      600px 600px, /* heartcandle1.png */
+      400px 1600px, /* heartcandle1.png */
       800px 1050px, /* heartcandle2.png */
       1630px 1080px, /* bearcandle1.png */
       300px 700px, /* bearcandle2.png */
-      1630px 400px; /* heartcandle2.png */
+      1630px 400px, /* heartcandle2.png */
+      1200px 1600px; /* bombcandle1.png */
+     
 }
 @keyframes rotateImages {
 0% { transform: rotate(0deg); }
@@ -157,6 +161,45 @@ color: #edede5;
 }
 
 /* 미디어 쿼리 */
+@media ( max-width: 1100px ) {
+    body {
+        background-image: 
+          url('./../images/bearcandle1.png'),
+          url('./../images/bearcandle2.png'),
+          url('./../images/bombcandle1.png'),
+          url('./../images/bombcandle2.png'),
+          url('./../images/heartcandle1.png'),
+          url('./../images/heartcandle2.png'),
+          url('./../images/bearcandle1.png'),
+          url('./../images/bearcandle2.png'),
+          url('./../images/heartcandle2.png'),
+          url('./../images/bombcandle1.png'),
+          url('./../images/bearcandle1.png'),
+          url('./../images/bearcandle2.png'),
+          url('./../images/bombcandle1.png'),
+          url('./../images/bombcandle2.png');
+          
+        background-repeat: no-repeat; 
+        background-size: 300px; 
+        background-position:
+          -80px 1320px, /* bearcandle1.png */
+          -80px 1750px, /* bearcandle2.png */
+          800px 400px, /* bombcandle1.png */
+          0 1030px, /* bombcandle2.png */
+          400px 1600px, /* heartcandle1.png */
+          800px 1050px, /* heartcandle2.png */
+          400px 880px, /* bearcandle1.png */
+          -90px 320px, /* bearcandle2.png */
+          300px 550px, /* heartcandle2.png */
+          800px 1600px, /* bombcandle1.png */
+          -80px 2120px, /* bearcandle1.png */
+          800px 2950px, /* bearcandle2.png */
+          800px 2480px, /* bombcandle1.png */
+          0 2630px; /* bombcandle2.png */
+         
+    }
+}
+
 @media ( max-width: 950px ) {
     .menu-item {
         width: 250px;
@@ -200,7 +243,12 @@ color: #edede5;
         url('./../images/heartcandle2.png'),
         url('./../images/bearcandle1.png'),
         url('./../images/bearcandle2.png'),
-        url('./../images/bombcandle1.png');
+        url('./../images/bombcandle1.png'),
+        url('./../images/bombcandle2.png'),
+        url('./../images/heartcandle1.png'),
+        url('./../images/heartcandle2.png'),
+        url('./../images/bearcandle1.png'),
+        url('./../images/bombcandle2.png');
 
         background-repeat: no-repeat; 
         background-size: 200px;
@@ -213,7 +261,12 @@ color: #edede5;
       -20px 1400px, /* heartcandle2.png */
       -50px 1000px, /* bearcandle1.png */
       250px 750px, /* bearcandle2.png */
-      500px 330px; /* bombcandle1.png */
+      500px 330px, /* bombcandle1.png */
+      450px 2800px, /* bombcandle2.png */
+      200px 2400px, /* heartcandle1.png */
+      -20px 2100px, /* heartcandle2.png */
+      -50px 3000px, /* bearcandle1.png */
+      500px 1800px; /* bearcandle1.png */
     }
     .menu-item {
         width: 200px;

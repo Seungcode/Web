@@ -1,93 +1,78 @@
 .map-container {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    margin-top: 20px;
-    }
-    
-    .map-box {
-    width: 80%;
-    margin-bottom: 20px;
-    padding: 20px;
-    border: 1px solid #ccc;
-    box-sizing: border-box;
-    }
-        
-    .boxes {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    margin-top: 20px;
-    }
-    
-    .box {
-    width: 39%;
-    margin-left: 12px;
-    margin-right: 12px;
-    margin-bottom: 100px;
-    padding: 20px;
-    border: 1px solid #ccc;
-    box-sizing: border-box;
-    }
-    
-    .box h3 {
-        margin-bottom: 5px;
-    }
-    
-    .box li {
-        margin: 3px;
-    }
-    
-    .map-box img{
-    max-width: 100%;
-    max-height: 100%;
-    width: auto;
-    height: auto;
-    margin-top: 10px;
-    object-fit: contain;
-    padding-bottom: 0px;
-    }
-    
-    .map-guide {
-        margin-top: 13px;
-    }
-    .map-guide p {
-        margin-top: 10px;
-    }
-    
-    
-    .background-images {
-    position: relative;
-    width: 100vw;
-    height: 100vh;
-    }
-    
-    .image {
-    position: absolute;
-    width: 100px; /* Adjust size as needed */
-    height: 100px; /* Adjust size as needed */
-    /* Set background images */
-    }
-    
-    .bear1 {
-    background-image: url('./../images/bearcandle1.png');
-    }
-    
-    .bear2 {
-    background-image: url('./../images/bearcandle2.png');
-    }
-    
-    .bomb1 {
-    background-image: url('./../images/bombcandle1.png');
-    }
-    
-    .bomb2 {
-    background-image: url('./../images/bombcandle2.png');
-    }
+background-color: #F1F1F1;
+display: flex;
+flex-wrap: wrap;
+justify-content: center;
+margin-top: 20px;
+}
 
-    @media only screen and (max-width: 768px) { 
-        .box{
-            width: 80%;
-            margin-bottom: 30px;
-        }
+.map-box {
+width: 80%;
+margin-bottom: 20px;
+padding: 20px;
+border: 1px solid #ccc;
+box-sizing: border-box;
+}
+    
+.boxes {
+display: flex;
+flex-wrap: wrap;
+justify-content: center;
+margin-top: 20px;
+}
+
+.box {
+width: 39%;
+margin-left: 12px;
+margin-right: 12px;
+margin-bottom: 100px;
+padding: 20px;
+border: 1px solid #ccc;
+box-sizing: border-box;
+}
+
+.box h3 {
+    margin-bottom: 5px;
+}
+
+.box li {
+    margin: 3px;
+}
+
+.map-box img{
+max-width: 100%;
+max-height: 100%;
+width: auto;
+height: auto;
+margin-top: 10px;
+object-fit: contain;
+padding-bottom: 0px;
+}
+
+.map-guide {
+    margin-top: 13px;
+}
+.map-guide p {
+    margin-top: 10px;
+}
+
+
+.background-images {
+position: relative;
+width: 100vw;
+height: 100vh;
+}
+
+.image {
+position: absolute;
+width: 100px; /* Adjust size as needed */
+height: 100px; /* Adjust size as needed */
+/* Set background images */
+}
+
+@media only screen and (max-width: 768px) { 
+    .box{
+        width: 80%;
+        margin-bottom: 30px;
     }
+}
