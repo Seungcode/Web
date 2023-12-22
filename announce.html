@@ -118,10 +118,11 @@
 							const itemContainer = document.createElement('div');
 							itemContainer.classList.add('item-container');
 							itemContainer.dataset.id = item.noti_id;
+							itemContainer.dataset.event = item.EVENT;
 			 
 							const content = `
 							<input type="checkbox" class="item-checkbox" hidden>
-							<a class="item-title" href="notice_detail.html?id=${item.noti_id}" style="color: black;">${item.title}</a> 
+							<a class="item-title" href="notice_detail.html?id=${item.noti_id}&event=${item.EVENT}" style="color: black;">${item.title}</a> 
 							`;
 			
 							itemContainer.innerHTML = content;
@@ -144,29 +145,33 @@
 					method: 'GET',
 					dataType: 'json',
 					success: function(noticeData) {
-						// 메뉴 데이터를 동적으로 출력
-						const noticeAnnounceBox = document.querySelector('.notice-box');
-	
-						noticeData.data.forEach(item => {
-							const itemContainer = document.createElement('div');
-							itemContainer.classList.add('item-container');
-							itemContainer.dataset.id = item.noti_id;
-			
-							const content = `
-							<input type="checkbox" class="item-checkbox" hidden>
-							<a class="item-title" href="notice_detail.html?id=${item.noti_id}" style="color: black;">${item.title}</a>
-							`;
-			
-							itemContainer.innerHTML = content;
-							noticeAnnounceBox.appendChild(itemContainer);
-						});
-						checkAuth();
-						createDeleteButton();
-						createAddButton();
+					   // 메뉴 데이터를 동적으로 출력
+					   var isAuthenticated = localStorage.getItem('auth');
+					   const noticeAnnounceBox = document.querySelector('.notice-box');
+		
+					   noticeData.data.forEach(item => {
+						  const itemContainer = document.createElement('div');
+						  itemContainer.classList.add('item-container');
+						  itemContainer.dataset.id = item.noti_id;
+			  
+						  const content = `
+						  <input type="checkbox" class="item-checkbox" hidden>
+						  <a class="item-title" href="notice_detail.html?id=${item.noti_id}&event=${item.EVENT}" style="color: black;">${item.title}</a>
+						  `;
+			  
+						  itemContainer.innerHTML = content;
+						  noticeAnnounceBox.appendChild(itemContainer);
+					   });
+					   checkAuth();
+					   if (isAuthenticated === 'true') {
+						  createDeleteButton();
+						  createAddButton();
+					   }
+					   
 					},
 					
 					error: function() {
-						console.log('공지 사항 정보를 가져오는 데 실패했습니다.');
+					   console.log('공지 사항 정보를 가져오는 데 실패했습니다.');
 					}
 				});
 			});

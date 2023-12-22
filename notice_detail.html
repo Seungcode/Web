@@ -42,8 +42,18 @@
         </div>
     <div class="center-maker">
         <div class="center">
-            <div class="detail-container" id="notice-detail-container">
+            <div class="detail-container" id="notice-detail-container"></div>
                 <!-- 공지 상세 내용이 표시될 영역 -->
+                <div class="detail-container">
+                    <div id="detail-prev">
+                        <span>이전글 :</span>
+                        <a id="before" href="이전글_링크_주소">이전 글이 없습니다.</a>
+                    </div>
+                    <hr class="line">
+                    <div id="detail-next">
+                        <span>다음글 :</span>
+                        <a id="next" href="다음글_링크_주소">다음 글이 없습니다.</a>
+                </div>
             </div>
         </div>
     </div>
@@ -98,7 +108,7 @@
         // 페이지 로드 시 AJAX를 통해 특정 ID의 공지 정보를 가져옴
         $(document).ready(function () {
             const noticeId = getParameterByName('id'); // URL에서 id 파라미터를 가져오는 함수
-
+            const event = getParameterByName('event');
             $.ajax({
                 url: `http://15.164.167.203:3000/noti/one?id=${noticeId}`,
                 method: 'GET',
@@ -136,6 +146,57 @@
                     console.log('공지 상세 정보를 가져오는 데 실패했습니다.');
                 }
             });
+            $.ajax({
+                url: `http://15.164.167.203:3000/noti/before?id=${noticeId}&event=${event}`,
+                method: 'GET',
+                dataType: 'json',
+                success: function (noticeData) {
+                    console.log(noticeData);
+            
+                    var beforeElement = document.getElementById('before');
+            
+                    if (beforeElement) {
+                        if (noticeData.data && noticeData.data[0] === "이전 글이 없습니다") {
+                            beforeElement.href = window.location.href;
+                        } else if (noticeData.data && noticeData.data[0].title) {
+                            console.log(noticeData.data[0].noti_id);
+                            beforeElement.innerText = noticeData.data[0].title;
+                            beforeElement.href = `./notice_detail.html?id=${noticeData.data[0].noti_id}&event=${event}`;
+                        }
+                    }
+            
+                    checkAuth();
+                },
+                error: function () {
+                    console.log('공지 상세 정보를 가져오는 데 실패했습니다.');
+                }
+            });
+            
+            $.ajax({
+                url: `http://15.164.167.203:3000/noti/next?id=${noticeId}&event=${event}`,
+                method: 'GET',
+                dataType: 'json',
+                success: function (noticeData) {
+                    console.log(noticeData);
+            
+                    var nextElement = document.getElementById('next');
+            
+                    if (nextElement) {
+                        if (noticeData.data && noticeData.data[0] === "다음 글이 없습니다") {
+                            nextElement.href = window.location.href;
+                        } else if (noticeData.data && noticeData.data[0].title) {
+                            nextElement.innerText = noticeData.data[0].title;
+                            nextElement.href = `./notice_detail.html?id=${noticeData.data[0].noti_id}&event=${event}`;
+                        }
+                    }
+            
+                    checkAuth();
+                },
+                error: function () {
+                    console.log('공지 상세 정보를 가져오는 데 실패했습니다.');
+                }
+            });
+            
         });
 
         // URL에서 파라미터 값을 가져오는 함수
